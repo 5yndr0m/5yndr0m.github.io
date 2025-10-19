@@ -1,0 +1,111 @@
+/* Global resets and styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    scroll-behavior: smooth; /* Smooth scrolling for anchors */
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease; /* CSS transition trick */
+}
+
+nav a:hover {
+    color: #ffcc00;
+    transform: scale(1.1); /* Scale up on hover */
+}
+
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+section,
+article {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Depth effect */
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+section:hover,
+article:hover {
+    transform: translateY(-5px); /* Lift on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.profile-img {
+    width: 200px;
+    height: auto;
+    border-radius: 50%; /* Circle image trick */
+    transition: opacity 0.5s ease;
+}
+
+.profile-img:hover {
+    opacity: 0.8;
+}
+
+/* For projects or blog lists - CSS Grid trick */
+.blog-list,
+.project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+.back-to-top {
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.back-to-top:hover {
+    opacity: 0.7;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+}

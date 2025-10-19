@@ -1,8 +1,8 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Courier New", monospace; /* Monospace for typewriter look */
     margin: 0;
     padding: 0;
-    background-color: #11111b; /* Catppuccin Mocha Base */
+    background-color: #11111b; /* Catppuccin Mocha Crust */
     color: #cdd6f4; /* Catppuccin Mocha Text */
 }
 main {
@@ -12,27 +12,18 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 80px); /* Adjusted for taller footer */
+    min-height: calc(100vh - 80px); /* Adjusted for footer */
 }
 main h1 {
     font-size: 5em;
     position: relative;
-    overflow: hidden;
-    white-space: nowrap;
     display: inline-block;
-    animation: typeSyndrom 8s infinite steps(7); /* 7 is length of "Syndrom" */
+    white-space: nowrap;
 }
-main h1::after {
-    content: "Senal"; /* Word to change to */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    white-space: nowrap;
-    overflow: hidden;
+main h1 .cursor {
     display: inline-block;
-    animation: typeSenal 8s infinite steps(5); /* 5 is length of "Senal" */
-    color: #cba6f7; /* Catppuccin Mocha Mauve for contrast */
+    color: #cba6f7; /* Mocha Mauve */
+    animation: blink 0.5s step-end infinite;
 }
 main nav {
     margin-top: 1em;
@@ -40,7 +31,7 @@ main nav {
     gap: 1.5em;
 }
 main nav a {
-    color: #cdd6f4; /* Catppuccin Mocha Text */
+    color: #cdd6f4; /* Mocha Text */
     text-decoration: none;
     font-size: 1.2em;
     padding: 0.5em 1em;
@@ -49,90 +40,64 @@ main nav a {
         transform 0.3s ease;
 }
 main nav a:hover {
-    color: #cba6f7; /* Catppuccin Mocha Mauve */
+    color: #cba6f7; /* Mocha Mauve */
     transform: scale(1.1);
 }
 footer {
-    background-color: #11111b; /* Catppuccin Mocha Surface0 */
-    color: #a6adc8; /* Catppuccin Mocha Subtext0 */
+    background-color: #313244; /* Mocha Surface0 */
+    color: #a6adc8; /* Mocha Subtext0 */
     padding: 1em;
     text-align: center;
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 3rem;
+}
+footer .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 footer .social-links {
-    margin-bottom: 0.5em;
     display: flex;
-    justify-content: center;
-    gap: 1.5em;
+    gap: 0.75em;
 }
-footer .social-links a {
-    color: #a6adc8; /* Catppuccin Mocha Subtext0 */
+footer .social-links .social-button {
     text-decoration: none;
     font-size: 1em;
-    transition: color 0.3s ease;
+    padding: 0.5em 1em;
+    border-radius: 12px; /* More rounded corners */
+    color: #1e1e2e; /* Mocha Base for contrast */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    transition:
+        box-shadow 0.3s ease,
+        transform 0.3s ease,
+        background-color 0.3s ease;
 }
-footer .social-links a:hover {
-    color: #cba6f7; /* Catppuccin Mocha Mauve */
+footer .social-links .social-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+    transform: translateY(-2px); /* Slight lift */
+    background-color: #cba6f7; /* Mocha Mauve */
+    color: #1e1e2e;
 }
-footer p {
+footer .social-links .x-button {
+    background-color: #cdd6f4; /* Mocha Text (X’s white/black) */
+}
+footer .social-links .linkedin-button {
+    background-color: #74c7ec; /* Mocha Sapphire (LinkedIn blue) */
+}
+footer .social-links .github-button {
+    background-color: #a6adc8; /* Mocha Subtext0 (GitHub gray) */
+}
+footer .copyright p {
     margin: 0;
+    font-size: 1em;
 }
 
-/* Animation for original text (Syndrom) */
-@keyframes typeSyndrom {
-    0% {
-        width: 0;
-        opacity: 1;
-    }
-    20% {
-        width: 100%;
-        opacity: 1;
-    } /* Fully typed "Syndrom" */
-    40% {
-        width: 100%;
-        opacity: 1;
-    } /* Pause */
+/* Blinking Cursor */
+@keyframes blink {
     50% {
-        width: 0;
-        opacity: 0;
-    } /* Hide "Syndrom" */
-    90% {
-        width: 0;
-        opacity: 0;
-    } /* Stay hidden while "Senal" types */
-    100% {
-        width: 0;
-        opacity: 1;
-    } /* Reset for next cycle */
-}
-
-/* Animation for alternate text (Senal) */
-@keyframes typeSenal {
-    0% {
-        width: 0;
         opacity: 0;
     }
-    40% {
-        width: 0;
-        opacity: 0;
-    } /* Stay hidden while "Syndrom" is visible */
-    50% {
-        width: 0;
-        opacity: 1;
-    } /* Appear */
-    70% {
-        width: 100%;
-        opacity: 1;
-    } /* Fully typed "Senal" */
-    90% {
-        width: 100%;
-        opacity: 1;
-    } /* Pause */
-    100% {
-        width: 0;
-        opacity: 0;
-    } /* Hide for next cycle */
 }

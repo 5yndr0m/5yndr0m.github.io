@@ -46,9 +46,8 @@ if (typewriter) {
   type();
 }
 
-// --- SVG Timeline Drawing ---
+// --- Hide nav on scroll ---
 document.addEventListener("DOMContentLoaded", function () {
-  // Hide nav on scroll
   let lastScrollTop = 0;
   const nav = document.querySelector("nav");
   window.addEventListener("scroll", function () {
@@ -59,41 +58,5 @@ document.addEventListener("DOMContentLoaded", function () {
       nav.classList.remove("nav-hidden");
     }
     lastScrollTop = st <= 0 ? 0 : st;
-  });
-
-  // Timeline SVG
-  const svg = document.getElementById("timeline-svg");
-  if (!svg) return;
-
-  // y positions for dots (should match .timeline-label top values)
-  const milestones = [20, 120, 220, 320];
-
-  // Draw vertical line
-  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-  line.setAttribute("x1", 40);
-  line.setAttribute("y1", milestones[0]);
-  line.setAttribute("x2", 40);
-  line.setAttribute("y2", milestones[milestones.length - 1]);
-  line.setAttribute("stroke", "#cba6f7");
-  line.setAttribute("stroke-width", "16");
-  line.setAttribute("stroke-linecap", "round");
-  svg.appendChild(line);
-
-  // Draw dots
-  milestones.forEach((y, i) => {
-    const circle = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "circle",
-    );
-    circle.setAttribute("cx", 40);
-    circle.setAttribute("cy", y);
-    circle.setAttribute("r", 12);
-    circle.setAttribute("fill", "#cba6f7");
-    circle.setAttribute("stroke", "#cdd6f4");
-    circle.setAttribute("stroke-width", "2");
-    if (i === milestones.length - 1) {
-      circle.setAttribute("class", "active-dot");
-    }
-    svg.appendChild(circle);
   });
 });

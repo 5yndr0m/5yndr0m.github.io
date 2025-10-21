@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Setting Up a Windows VM on Arch Linux - Senal Dilanjana</title>
+        <link rel="stylesheet" href="../styles/blog.css" />
+        <script src="../scripts/main.js"></script>
+    </head>
+    <body>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../about.html">About</a>
+            <a href="../projects.html">Projects</a>
+            <a href="../contact.html">Contact</a>
+            <a href="../blog.html">Blog</a>
+        </nav>
+        <main>
+            <article class="blog-post-content">
+                <h1 class="post-title">
+                    Setting Up a Windows VM on Arch Linux
+                </h1>
+                <span class="post-date">2025-08-01 10:52</span>
+                <div class="post-tags">
+                    <span class="tag mauve">arch</span>
+                    <span class="tag sapphire">guide</span>
+                    <span class="tag green">vm</span>
+                    <span class="tag mauve">qemu</span>
+                    <span class="tag sapphire">kvm</span>
+                </div>
+                <section class="post-body">
+                    <p>
+                        Running Windows in a virtual machine on Arch Linux is
+                        straightforward with QEMU/KVM and virt-manager. This
+                        guide walks you through creating a Windows VM with
+                        optimized performance using VirtIO drivers.
+                    </p>
+
+                    <h2>Step 1: Download Windows ISO</h2>
+                    <p>
+                        First, you'll need a Windows installation image. Visit
+                        Microsoft's official website to download the Windows 10
+                        or Windows 11 ISO. If you have a Windows license, you
+                        can use the Media Creation Tool. Save the ISO file
+                        somewhere accessible, like
+                        <code>/home/syndrom/Downloads/</code>.
+                    </p>
+
+                    <h2>Step 2: Download VirtIO Drivers</h2>
+                    <p>
+                        Windows needs special drivers for optimal performance
+                        with KVM. These VirtIO drivers significantly improve
+                        disk and network performance. Download them with:
+                    </p>
+                    <pre><code># Download the latest stable VirtIO drivers ISO
+wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso -O ~/Downloads/virtio-win.iso</code></pre>
+
+                    <h2>Step 3: Create the Windows VM</h2>
+                    <p>
+                        Launch virt-manager and create a new virtual machine.
+                        Select "Local install media (ISO image or CDROM)" and
+                        click Forward. Browse to your Windows ISO file and let
+                        it automatically detect the operating system. If
+                        detection fails, manually select Microsoft Windows and
+                        your specific version.
+                    </p>
+                    <p>
+                        For memory and CPU settings, allocate at least 4GB of
+                        RAM (4096 MB) for Windows 10/11, and 2-4 CPU cores
+                        depending on what your system can handle. Create a disk
+                        image of at least 50GB, though more is recommended for a
+                        comfortable experience.
+                    </p>
+                    <p>
+                        On the final configuration screen, name your VM
+                        something like "Windows-10" and importantly, check
+                        "Customize configuration before install" before clicking
+                        Finish.
+                    </p>
+
+                    <h2>Step 4: Optimize VM Settings</h2>
+                    <p>
+                        The configuration window provides several optimization
+                        opportunities. In Boot Options, enable the boot menu and
+                        ensure the CD-ROM is first in the boot order.
+                    </p>
+                    <p>
+                        Add the VirtIO drivers by clicking "Add Hardware",
+                        selecting Storage, choosing "CDROM device", and browsing
+                        to the virtio-win.iso file you downloaded earlier.
+                    </p>
+                    <p>
+                        For better performance, change your network device model
+                        to "virtio" and your main disk bus to "VirtIO" (this
+                        requires loading drivers during Windows installation).
+                        Set the video model to "QXL" or "Virtio", and if you
+                        need audio, set the sound model to "ich9".
+                    </p>
+
+                    <h2>Step 5: Install Windows</h2>
+                    <p>
+                        Click "Begin Installation" to start the VM. It will boot
+                        from the Windows ISO. During installation, when you
+                        reach the disk selection screen, you might not see any
+                        drives initially. This is normal.
+                    </p>
+                    <p>
+                        Click "Load driver" and browse to the VirtIO CD-ROM.
+                        Navigate to <code>viostor/w10/amd64</code> (or the
+                        appropriate version for your Windows) and select the
+                        storage driver. Your disk should now appear, and you can
+                        continue with the normal Windows installation process.
+                    </p>
+
+                    <h2>Step 6: Install VirtIO Drivers (Post-installation)</h2>
+                    <p>
+                        After Windows boots for the first time, you need to
+                        install the remaining VirtIO drivers. Open File
+                        Explorer, navigate to the VirtIO CD-ROM, and run
+                        <code>virtio-win-gt-x64.msi</code>. This installs all
+                        the remaining drivers for optimal performance.
+                    </p>
+                    <p>
+                        I also recommend installing SPICE Guest Tools, which you
+                        can find at the SPICE project website or on the VirtIO
+                        CD-ROM at <code>guest-agent/qemu-ga-x86_64.msi</code>.
+                        This enables clipboard sharing, dynamic resolution
+                        adjustment, and better overall integration between host
+                        and guest.
+                    </p>
+
+                    <h2>Step 7: Optimize Performance</h2>
+                    <p>
+                        Within Windows, you can improve performance by disabling
+                        Windows Search indexing, unnecessary startup programs,
+                        and Windows Defender real-time protection if you don't
+                        need it. You can also disable visual effects through
+                        Control Panel → System → Advanced → Performance and
+                        select "Adjust for best performance".
+                    </p>
+                    <p>
+                        In the VM settings, allocate more RAM if you have it
+                        available and enable hardware acceleration if your CPU
+                        supports it.
+                    </p>
+
+                    <h2>Useful Tips</h2>
+                    <p>
+                        Take snapshots before making major changes using
+                        virt-manager. You can set up shared folders using SPICE
+                        WebDAV or Samba. USB devices can be passed through from
+                        the host to the VM when needed. Press Ctrl+Alt+F to
+                        toggle full screen mode in the VM viewer.
+                    </p>
+                    <p>
+                        With these settings, you should have a well-performing
+                        Windows VM running on your Arch Linux system!
+                    </p>
+                </section>
+            </article>
+        </main>
+        <footer>
+            <div class="footer-container">
+                <div class="copyright">
+                    <p>&copy; 2025 Senal_Dilanjana</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

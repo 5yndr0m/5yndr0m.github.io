@@ -3,46 +3,63 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Personal website of Syndrom - Home" />
-        <title>Syndrom - Home</title>
-        <link rel="stylesheet" href="styles.css" />
+        <title>Blog - Senal Dilanjana</title>
+        <link rel="stylesheet" href="styles/blog.css" />
+        <script src="scripts/main.js"></script>
     </head>
     <body>
-        <header>
-            <h1>Syndrom's Personal Site</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Me</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                </ul>
-            </nav>
-        </header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
+            <a href="blog.html">Blog</a>
+        </nav>
         <main>
-            <section id="about">
-                <h2>About Me</h2>
-                <p>
-                    Hi, I'm Syndrom, an Arch Linux enthusiast building cool
-                    stuff.
-                </p>
-                <img
-                    src="images/profile.jpg"
-                    alt="Profile picture of [Your Name]"
-                    class="profile-img"
-                />
+            <section class="blog-list">
+                <h2>Blog Posts</h2>
+                <ul>
+                    <li class="blog-post mauve">
+                        <a href="blog/template.html">
+                            <h3 class="post-title">My First Blog Post</h3>
+                            <span class="post-date">2025-06-01 14:30</span>
+                            <div class="post-tags">
+                                <span class="tag mauve">linux</span>
+                                <span class="tag sapphire">arch</span>
+                                <span class="tag green">personal</span>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- Example: Add more posts with different accent colors -->
+                    <li class="blog-post sapphire">
+                        <a href="blog/second-post.html">
+                            <h3 class="post-title">Second Blog Post</h3>
+                            <span class="post-date">2025-06-02 10:00</span>
+                            <div class="post-tags">
+                                <span class="tag sapphire">networking</span>
+                                <span class="tag blue">tutorial</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="blog-post green">
+                        <a href="blog/third-post.html">
+                            <h3 class="post-title">Third Blog Post</h3>
+                            <span class="post-date">2025-06-03 18:45</span>
+                            <div class="post-tags">
+                                <span class="tag green">security</span>
+                                <span class="tag red">research</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
             </section>
         </main>
         <footer>
-            <p>
-                &copy; 2025 Syndrom.
-                <a href="https://github.com/5yndr0m">GitHub</a> |
-                <a href="https://linkedin.com/in/senalKandanaarachchi"
-                    >LinkedIn</a
-                >
-            </p>
-            <a href="#top" class="back-to-top">Back to Top</a>
+            <div class="footer-container">
+                <div class="copyright">
+                    <p>&copy; 2025 Senal_Dilanjana</p>
+                </div>
+            </div>
         </footer>
     </body>
 </html>

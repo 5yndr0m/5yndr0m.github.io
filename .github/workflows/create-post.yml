@@ -1,0 +1,31 @@
+name: Create Blog Post via API
+
+on:
+  repository_dispatch:
+    types: [create-post]
+
+jobs:
+  create-post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Create Post File
+        run: |
+          node scripts/create-post.js '${{ toJson(github.event.client_payload) }}'
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add src/app/blog/
+          git commit -m "feat(blog): add new post '${{ github.event.client_payload.title }}'"
+          git push

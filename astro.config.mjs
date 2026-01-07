@@ -13,5 +13,5 @@ export default defineConfig({
         }),
     ],
     output: 'static',
-    site: 'https://5yndr0m.github.io',
+    site: 'https://dilanjana.me',
 });

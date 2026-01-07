@@ -1,0 +1,60 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Calendar, Tag } from "lucide-react";
+import { posts } from "../../data/posts";
+---
+
+<Layout title="Blog | Syndrom">
+    <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-mainPurple mb-4">The Blog</h2>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                Thoughts, tutorials, and adventures in cybersecurity, Linux, and development.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((post) => (
+                <a
+                    href={`/blog/${post.slug}`}
+                    class="group flex flex-col bg-surface rounded-2xl overflow-hidden border border-white/5 hover:border-mainPurple/50 hover:shadow-2xl hover:shadow-mainPurple/20 transition-all duration-300 transform hover:-translate-y-2"
+                >
+                    <div class="relative h-48 w-full bg-muted overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-mainPurple/20 to-mainGreen/10 flex items-center justify-center">
+                            <span class="text-white/10 text-4xl font-bold italic tracking-tighter">./blog</span>
+                        </div>
+                        <img
+                            src={post.coverImage}
+                            alt={post.title}
+                            class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                        />
+                    </div>
+
+                    <div class="flex-1 p-6 flex flex-col">
+                        <div class="flex items-center gap-2 text-xs text-slate-500 mb-3">
+                            <Calendar className="w-3 h-3 text-mainPurple" />
+                            <time datetime={post.date}>{post.date}</time>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-white group-hover:text-mainPurple transition-colors mb-3 line-clamp-2">
+                            {post.title}
+                        </h3>
+
+                        <p class="text-slate-400 text-sm mb-4 line-clamp-3">
+                            {post.excerpt}
+                        </p>
+
+                        <div class="mt-auto flex flex-wrap gap-2">
+                            {post.tags.map(tag => (
+                                <span class="inline-flex items-center px-2 py-1 rounded-md bg-mainPurple/10 text-xs text-mainLavender border border-mainPurple/20">
+                                    <Tag className="w-3 h-3 mr-1" />
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </a>
+            ))}
+        </div>
+    </div>
+</Layout>

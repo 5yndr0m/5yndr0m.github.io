@@ -1,0 +1,19 @@
+---
+const currentYear = new Date().getFullYear();
+---
+<footer class="py-12 mt-auto relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex flex-col items-center gap-6">
+            <div class="h-[1px] w-12 bg-gradient-to-r from-transparent via-mainPurple/50 to-transparent"></div>
+            
+            <div class="text-center space-y-2">
+                <p class="text-xs font-mono tracking-[0.4em] uppercase text-slate-500">
+                    &copy; {currentYear} <span class="text-mainLavender">Syndrom</span>
+                </p>
+                <p class="text-[10px] text-slate-600 font-light tracking-widest uppercase">
+                    Built with <span class="text-mainGreen/50">Astro</span> & <span class="text-mainPurple/50">Tailwind</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

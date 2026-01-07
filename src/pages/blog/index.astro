@@ -1,7 +1,10 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { Calendar, Tag } from "lucide-react";
-import { posts } from "../../data/posts";
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
 <Layout title="Blog | Syndrom">
@@ -16,7 +19,7 @@ import { posts } from "../../data/posts";
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
                 <a
-                    href={`/blog/${post.slug}`}
+                    href={`/blog/${post.id}`}
                     class="group flex flex-col bg-surface rounded-2xl overflow-hidden border border-white/5 hover:border-mainPurple/50 hover:shadow-2xl hover:shadow-mainPurple/20 transition-all duration-300 transform hover:-translate-y-2"
                 >
                     <div class="relative h-48 w-full bg-muted overflow-hidden">
@@ -24,8 +27,8 @@ import { posts } from "../../data/posts";
                             <span class="text-white/10 text-4xl font-bold italic tracking-tighter">./blog</span>
                         </div>
                         <img
-                            src={post.coverImage}
-                            alt={post.title}
+                            src={post.data.coverImage}
+                            alt={post.data.title}
                             class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                         />
                     </div>
@@ -33,19 +36,19 @@ import { posts } from "../../data/posts";
                     <div class="flex-1 p-6 flex flex-col">
                         <div class="flex items-center gap-2 text-xs text-slate-500 mb-3">
                             <Calendar className="w-3 h-3 text-mainPurple" />
-                            <time datetime={post.date}>{post.date}</time>
+                            <time datetime={post.data.date}>{post.data.date}</time>
                         </div>
 
                         <h3 class="text-xl font-bold text-white group-hover:text-mainPurple transition-colors mb-3 line-clamp-2">
-                            {post.title}
+                            {post.data.title}
                         </h3>
 
                         <p class="text-slate-400 text-sm mb-4 line-clamp-3">
-                            {post.excerpt}
+                            {post.data.excerpt}
                         </p>
 
                         <div class="mt-auto flex flex-wrap gap-2">
-                            {post.tags.map(tag => (
+                            {post.data.tags.map(tag => (
                                 <span class="inline-flex items-center px-2 py-1 rounded-md bg-mainPurple/10 text-xs text-mainLavender border border-mainPurple/20">
                                     <Tag className="w-3 h-3 mr-1" />
                                     {tag}

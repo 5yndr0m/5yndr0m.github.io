@@ -1,19 +1,23 @@
 ---
 const currentYear = new Date().getFullYear();
 ---
-<footer class="py-12 mt-auto relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="flex flex-col items-center gap-6">
-            <div class="h-[1px] w-12 bg-gradient-to-r from-transparent via-mainPurple/50 to-transparent"></div>
-            
-            <div class="text-center space-y-2">
-                <p class="text-xs font-mono tracking-[0.4em] uppercase text-slate-500">
-                    &copy; {currentYear} <span class="text-mainLavender">Syndrom</span>
-                </p>
-                <p class="text-[10px] text-slate-600 font-light tracking-widest uppercase">
-                    Built with <span class="text-mainGreen/50">Astro</span> & <span class="text-mainPurple/50">Tailwind</span>
-                </p>
-            </div>
+<footer class="relative bg-black py-6 border-t border-white/10 overflow-hidden">
+    <!-- Top Glow -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[1px] bg-gradient-to-r from-transparent via-mainPurple/50 to-transparent"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
+        <!-- System Status -->
+        <div class="flex items-center gap-2 text-[10px] font-mono text-slate-500 uppercase tracking-widest">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-mainGreen opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-mainGreen"></span>
+            </span>
+            <span>System Online // v2.0.0</span>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-[10px] font-mono text-slate-600 uppercase tracking-wider">
+            &copy; {currentYear} Senal Dilanjana <span class="text-mainPurple mx-2">::</span> Syndrom
         </div>
     </div>
 </footer>

@@ -1,7 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { ProjectsCarousel } from "../components/ProjectsCarousel";
-import { Calendar, Tag, Mail, Github, Linkedin, Twitter, FileText } from "lucide-react";
+import { Card } from "../components/ui/Card";
+import { MinimalBackground } from "../components/ui/MinimalBackground";
+import { BlogGrid } from "../components/BlogGrid";
+import { ErrorBoundary } from "../components/ui/ErrorBoundary";
+import { HeroText } from "../components/ui/HeroText";
+import { ProfileImage } from "../components/ui/ProfileImage";
+import { FadeIn } from "../components/ui/FadeIn";
+import { Mail, Github, Linkedin, Twitter, FileText } from "lucide-react";
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog');
@@ -20,296 +27,230 @@ const contactLinks = [
 
 <Layout title="Syndrom | Home">
     <!-- Hero Section -->
-    <div class="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] text-center px-4 relative overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.1),transparent_70%)] pointer-events-none"></div>
-        <div class="space-y-4 relative z-10">
-            <h1 class="text-4xl sm:text-6xl md:text-8xl font-bold bg-gradient-to-r from-mainPurple via-mainLavender to-mainGreen bg-clip-text text-transparent animate-pulse drop-shadow-[0_0_20px_rgba(147,51,234,0.4)] py-4 leading-tight">
-                Syndrom
-            </h1>
-            <p class="text-xl md:text-2xl text-mainLavender/80 font-light tracking-[0.2em] uppercase">
-                Cybersecurity Researcher & Linux Technologist
-            </p>
-        </div>
-        <div class="absolute bottom-10 animate-bounce">
-            <a href="#about" class="text-mainPurple/50 hover:text-mainPurple transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="19 13l-7 7-7-7m14-8l-7 7-7-7" />
+    <div class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
+        <ErrorBoundary client:load>
+            <MinimalBackground client:load />
+        </ErrorBoundary>
+        
+        <FadeIn client:load>
+            <ErrorBoundary client:load>
+                 <HeroText client:load />
+            </ErrorBoundary>
+        </FadeIn>
+
+        <div class="absolute bottom-12 animate-bounce cursor-pointer z-10">
+            <a href="#about" class="text-zinc-500 hover:text-white transition-colors duration-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
                 </svg>
             </a>
         </div>
     </div>
 
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-surface/80 backdrop-blur-sm border-y border-white/5 relative">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="space-y-16">
-                <!-- Summary -->
-                <section>
-                    <div class="flex flex-col md:flex-row items-baseline gap-4 mb-8">
-                        <h2 class="text-4xl font-bold text-mainPurple">About Me</h2>
-                    </div>
-                    <div class="prose prose-invert prose-lg text-slate-300 max-w-none space-y-6">
-                        <p>
-                            Hi, I'm <strong class="text-mainLavender">Senal Dilanjana Kandanaarachchi</strong> (aka{" "}
-                            <strong className="text-mainLavender font-bold underline decoration-mainPurple/30">Syndrom</strong>), 
-                            a Linux-native technologist and IT undergraduate at the University of Vavuniya. 
-                            I'm obsessed with <strong class="text-mainGreen">system administration</strong>, 
-                            <strong class="text-mainGreen">workflow automation</strong>, and breaking systems to understand how they work.
-                        </p>
-                        <p>
-                            Recently, I completed the <strong class="text-mainPurple">TryHackMe Advent of Cyber (2025)</strong> 
-                            and Pre-Security paths, gaining hands-on experience in SIEM (Splunk), Malware Analysis, 
-                            and Network Traffic Analysis. I love building secure, self-hosted infrastructures and 
-                            exploring the intersection of security and automation.
-                        </p>
-                    </div>
-
-                    <!-- Open TryHackMe Badge (outside box) -->
-                    <div class="mt-8 flex flex-col sm:flex-row items-center gap-8 opacity-90 hover:opacity-100 transition-opacity">
-                        <div class="w-full sm:w-[330px] h-[90px] flex items-center justify-center overflow-hidden rounded-xl">
-                            <iframe 
-                                src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=6469648" 
-                                style='border:none; width: 100%; height: 100%;'
-                                title="TryHackMe Badge"
-                            ></iframe>
+     <!-- About Section -->
+    <section id="about" class="py-32 bg-zinc-950 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <FadeIn client:visible>
+                <div class="space-y-24">
+                    <!-- Summary -->
+                    <div class="grid lg:grid-cols-[48%_52%] gap-16 items-start">
+                        <div class="space-y-8">
+                            <div class="flex items-center gap-6">
+                                <ErrorBoundary client:load>
+                                    <ProfileImage client:visible />
+                                </ErrorBoundary>
+                                <h2 class="text-5xl font-bold text-white tracking-tighter">About <span class="text-mainPurple">Me</span></h2>
+                            </div>
+                            
+                            <div class="prose prose-invert prose-lg text-slate-400 font-light leading-relaxed">
+                                <p>
+                                    Hi, I'm <strong class="text-white font-medium">Senal Dilanjana Kandanaarachchi</strong> (aka{" "}
+                                    <strong class="text-mainPurple font-bold">Syndrom</strong>), 
+                                    a Linux-native technologist and IT undergraduate at the University of Vavuniya. 
+                                </p>
+                                <p>
+                                    I'm obsessed with <strong class="text-white">system administration</strong>, 
+                                    <strong class="text-white">workflow automation</strong>, and breaking systems to understand the chaotic beauty underneath.
+                                </p>
+                                <p>
+                                    Recently, I completed the <strong class="text-mainPurple">TryHackMe Advent of Cyber (2025)</strong> 
+                                and Pre-Security paths, gaining hands-on experience in Splunk, Malware Analysis, 
+                                and Network Traffic Analysis.
+                            </p>
                         </div>
-                        <div class="flex flex-col items-center sm:items-start text-center sm:text-left">
-                            <span class="text-[10px] font-mono text-mainPurple uppercase tracking-[0.2em] mb-1">via TryHackMe</span>
-                            <a 
-                                href="https://tryhackme.com/p/Syndrom" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="text-xs font-bold text-white hover:text-mainPurple transition-colors border-b border-white/10 hover:border-mainPurple pb-1 inline-flex items-center gap-2"
-                            >
-                                View My Full Security Profile
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                            </a>
-                        </div>
-                    </div>
-                </section>
 
-                <!-- Technical Skills & Stats Grid -->
-                <div class="grid md:grid-cols-2 gap-10">
-                    <!-- Skills -->
-                    <section class="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/5 shadow-2xl relative group">
-                        <div class="absolute inset-0 bg-gradient-to-br from-mainPurple/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl pointer-events-none"></div>
-                        <h3 class="text-2xl font-semibold text-mainLavender mb-8 flex items-center">
-                            <span class="w-10 h-10 rounded-xl bg-mainLavender/10 flex items-center justify-center mr-4 text-sm font-mono border border-mainLavender/20">01</span>
-                            Core Tech Stack
-                        </h3>
-                        <div class="grid grid-cols-2 gap-6">
-                            <div>
-                                <h4 class="text-xs font-bold text-mainGreen/70 uppercase tracking-widest mb-3">Programming</h4>
-                                <ul class="space-y-2 text-sm text-slate-400 font-mono">
-                                    <li>Python, Java</li>
-                                    <li>JavaScript (MERN)</li>
-                                    <li>Bash, C/C++</li>
-                                </ul>
+                         <!-- Open TryHackMe Badge (Integrated) -->
+                        <div class="flex flex-col sm:flex-row items-center gap-6 pt-4">
+                            <div class="w-full h-[90px] flex items-center justify-center overflow-hidden rounded-xl transition-colors">
+                                <iframe 
+                                    src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=6469648" 
+                                    style='border:none; width: 100%; height: 100%;'
+                                    title="TryHackMe Badge"
+                                ></iframe>
                             </div>
-                            <div>
-                                <h4 class="text-xs font-bold text-mainPurple/70 uppercase tracking-widest mb-3">Security</h4>
-                                <ul class="space-y-2 text-sm text-slate-400 font-mono">
-                                    <li>Wireshark, Burp Suite</li>
-                                    <li>Splunk, SIEM</li>
-                                    <li>Packettracer</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="text-xs font-bold text-mainLavender/70 uppercase tracking-widest mb-3">Infrastructure</h4>
-                                <ul class="space-y-2 text-sm text-slate-400 font-mono">
-                                    <li>Arch Linux, Docker</li>
-                                    <li>Podman, n8n</li>
-                                    <li>Git, Workflows</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Data</h4>
-                                <ul class="space-y-2 text-sm text-slate-400 font-mono">
-                                    <li>PostgreSQL</li>
-                                    <li>MongoDB</li>
-                                    <li>MySQL</li>
-                                </ul>
+                            <div class="flex flex-col items-start gap-1">
+                                <span class="text-[10px] font-mono text-mainPurple uppercase tracking-[0.2em]">Verified</span>
+                                <a 
+                                    href="https://tryhackme.com/p/Syndrom" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    class="text-sm font-medium text-white hover:text-mainPurple transition-colors flex items-center gap-2 group"
+                                >
+                                    View Security Profile
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                                </a>
                             </div>
                         </div>
-                    </section>
+                    </div>
 
-                    <!-- Experience / Focus -->
-                    <div class="space-y-10">
-                        <section class="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/5 shadow-2xl relative group">
-                            <div class="absolute inset-0 bg-gradient-to-br from-mainGreen/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl pointer-events-none"></div>
-                            <h3 class="text-2xl font-semibold text-mainLavender mb-6 flex items-center">
-                                <span class="w-10 h-10 rounded-xl bg-mainLavender/10 flex items-center justify-center mr-4 text-sm font-mono border border-mainLavender/20">02</span>
+                    <!-- Stats / Focus -->
+                    <div class="space-y-8">
+                        <Card className="p-8">
+                            <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-mainPurple/10 flex items-center justify-center text-mainPurple font-mono text-xs border border-mainPurple/20">01</span>
+                                Core Tech Stack
+                            </h3>
+                            <div class="grid grid-cols-2 gap-y-8 gap-x-4">
+                                <div>
+                                    <h4 class="text-xs font-bold text-mainGreen uppercase tracking-widest mb-3">Code</h4>
+                                    <ul class="space-y-2 text-sm text-slate-400 font-mono">
+                                        <li>Python, Java</li>
+                                        <li>TypeScript (React)</li>
+                                        <li>Bash, C++</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-mainPurple uppercase tracking-widest mb-3">SecOps</h4>
+                                    <ul class="space-y-2 text-sm text-slate-400 font-mono">
+                                        <li>Wireshark, Burp</li>
+                                        <li>Splunk, SIEM</li>
+                                        <li>Linux Hardening</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-mainLavender uppercase tracking-widest mb-3">Infra</h4>
+                                    <ul class="space-y-2 text-sm text-slate-400 font-mono">
+                                        <li>Docker, Podman</li>
+                                        <li>n8n Automation</li>
+                                        <li>GitOps</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Data</h4>
+                                    <ul class="space-y-2 text-sm text-slate-400 font-mono">
+                                        <li>PostgreSQL</li>
+                                        <li>MongoDB</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </Card>
+
+                        <Card className="p-8">
+                            <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-mainGreen/10 flex items-center justify-center text-mainGreen font-mono text-xs border border-mainGreen/20">02</span>
                                 Current Focus
                             </h3>
-                            <ul class="space-y-4 text-slate-300">
-                                <li class="flex items-start">
-                                    <span class="text-mainGreen mr-3 mt-1 text-xs">◆</span>
-                                    <span>Home Lab Automation (n8n + Podman + Cloudflare)</span>
+                             <ul class="space-y-4 text-slate-400">
+                                <li class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-mainGreen"></div>
+                                    <span>Home Lab Automation (n8n + Cloudflare)</span>
                                 </li>
-                                <li class="flex items-start">
-                                    <span class="text-mainGreen mr-3 mt-1 text-xs">◆</span>
+                                <li class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-mainGreen"></div>
                                     <span>Advanced Cybersecurity Research</span>
                                 </li>
-                                <li class="flex items-start">
-                                    <span class="text-mainGreen mr-3 mt-1 text-xs">◆</span>
+                                <li class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-mainGreen"></div>
                                     <span>Agentic AI & SecOps Workflows</span>
                                 </li>
                             </ul>
-                        </section>
-
-                        <section class="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/5 shadow-2xl relative group">
-                            <div class="absolute inset-0 bg-gradient-to-br from-slate-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl pointer-events-none"></div>
-                            <h3 class="text-2xl font-semibold text-mainLavender mb-6 flex items-center">
-                                <span class="w-10 h-10 rounded-xl bg-mainLavender/10 flex items-center justify-center mr-4 text-sm font-mono border border-mainLavender/20">03</span>
-                                Key Projects
-                            </h3>
-                            <ul class="space-y-4 text-slate-300">
-                                <li class="flex items-start">
-                                    <span class="text-mainLavender mr-3 mt-1 text-xs">●</span>
-                                    <span><strong>DisasterWatch:</strong> MERN-stack team lead project</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-mainLavender mr-3 mt-1 text-xs">●</span>
-                                    <span><strong>Auto-Sec Infra:</strong> Secure SSH isolation with Cloudflared</span>
-                                </li>
-                            </ul>
-                        </section>
+                        </Card>
                     </div>
                 </div>
-            </div>
+            </FadeIn>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-24 relative overflow-hidden bg-black">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(74,222,128,0.05),transparent_50%)]"></div>
+    <section id="projects" class="py-32 bg-mainBlack relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-mainPurple mb-4">Featured Projects</h2>
-                <div class="h-1 w-20 bg-gradient-to-r from-mainPurple to-mainGreen mx-auto rounded-full"></div>
-                <p class="text-slate-400 mt-6 max-w-2xl mx-auto">
-                    A collection of tools, automation workflows, and research projects focused on cybersecurity and system optimization.
-                </p>
-            </div>
-
-            <ProjectsCarousel client:load />
-
-            <div class="mt-20 text-center">
-                <a 
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 px-4">
+                 <div class="max-w-xl">
+                    <h2 class="text-5xl font-bold text-white tracking-tighter mb-4">Featured <span class="text-mainGreen">Projects</span></h2>
+                     <p class="text-slate-400 text-lg font-light">
+                        Tools, automation workflows, and research.
+                    </p>
+                </div>
+                 <a 
                     href="https://github.com/5yndr0m" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    class="inline-flex items-center px-8 py-4 rounded-full bg-surface border border-white/5 hover:border-mainPurple/50 text-slate-300 hover:text-white transition-all group"
+                    class="group inline-flex items-center px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:border-mainGreen/50 text-white transition-all hover:bg-white/10"
                 >
-                    <span class="mr-3">View more on GitHub</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+                    <span class="mr-2 font-mono text-sm">github.com/5yndr0m</span>
+                    <Github className="w-4 h-4" />
                 </a>
             </div>
+
+            <ErrorBoundary client:load>
+                 <ProjectsCarousel client:load />
+            </ErrorBoundary>
         </div>
     </section>
 
     <!-- Blog Section -->
-    <section id="blog" class="py-24 bg-surface/30 relative">
+    <section id="blog" class="py-32 relative">
+         <div class="absolute inset-0 bg-gradient-to-b from-mainBlack via-mainPurple/5 to-mainBlack pointer-events-none"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-                <div>
-                    <h2 class="text-4xl font-bold text-mainPurple mb-4">Latest Insights</h2>
-                    <p class="text-slate-400 max-w-xl">
-                        Deep dives into cybersecurity research, system administration, and modern development workflows.
-                    </p>
-                </div>
-                <a 
-                    href="/blog" 
-                    class="group flex items-center text-mainLavender hover:text-white transition-colors font-mono text-sm tracking-widest uppercase"
-                >
-                    Explore all posts
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                </a>
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-bold text-white tracking-tighter mb-6">Latest <span class="text-mainLavender">Insights</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-mainPurple to-transparent mx-auto rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {latestPosts.map((post) => (
-                    <a
-                        href={`/blog/${post.id}`}
-                        class="group flex flex-col bg-black/40 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/5 hover:border-mainPurple/30 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
-                    >
-                        <div class="relative h-56 w-full overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
-                            <img
-                                src={post.data.coverImage}
-                                alt={post.data.title}
-                                class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100"
-                            />
-                            <div class="absolute top-4 left-4 z-20">
-                                <span class="px-3 py-1 rounded-full bg-mainPurple/20 backdrop-blur-md border border-mainPurple/30 text-[10px] font-bold text-mainLavender uppercase tracking-[0.2em]">
-                                    {post.data.tags[0]}
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="p-8 flex flex-col flex-1 relative">
-                            <div class="flex items-center gap-3 text-[10px] font-mono text-slate-500 mb-4 uppercase tracking-widest">
-                                <Calendar className="w-3 h-3 text-mainPurple" />
-                                <time datetime={post.data.date}>{post.data.date}</time>
-                            </div>
-
-                            <h3 class="text-xl font-bold text-white group-hover:text-mainPurple transition-colors mb-4 line-clamp-2 leading-tight">
-                                {post.data.title}
-                            </h3>
-
-                            <p class="text-slate-400 text-sm font-light leading-relaxed mb-6 line-clamp-3">
-                                {post.data.excerpt}
-                            </p>
-
-                            <div class="mt-auto pt-6 border-t border-white/5 flex items-center text-xs font-bold text-mainGreen/70 uppercase tracking-[0.2em] group-hover:text-mainGreen transition-colors">
-                                Read Protocol
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                </svg>
-                            </div>
-                        </div>
-                    </a>
-                ))}
+            <ErrorBoundary client:load>
+                <BlogGrid posts={latestPosts} client:load />
+            </ErrorBoundary>
+            </div>
+             <div class="mt-16 text-center">
+                <a 
+                    href="/blog" 
+                    class="inline-block px-8 py-3 rounded-full border border-white/10 text-slate-400 hover:text-white hover:border-white/30 transition-all font-mono text-sm tracking-widest uppercase hover:bg-white/5"
+                >
+                    View Archive
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Subtle Contact Section -->
-    <section id="contact" class="py-24 relative overflow-hidden">
+    <section id="contact" class="py-24 relative overflow-hidden bg-mainBlack">
         <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-            <h2 class="text-2xl font-bold text-mainPurple mb-8 opacity-50 tracking-[0.3em] uppercase">Connect</h2>
+            <h2 class="text-xl font-mono font-bold text-white mb-12 opacity-30 tracking-[0.5em] uppercase">Connect</h2>
             
             <div class="flex flex-wrap justify-center gap-8 md:gap-12">
-                {contactLinks.map((link) => (
-                    <a 
-                        href={link.href}
-                        target={link.name === "Email" ? "_self" : "_blank"}
-                        rel="noopener noreferrer"
-                        class="group relative flex flex-col items-center gap-3 transition-all duration-300"
-                        title={link.name}
-                    >
-                        <div class="w-14 h-14 rounded-2xl bg-surface border border-white/5 flex items-center justify-center group-hover:border-mainPurple/50 group-hover:bg-mainPurple/5 transition-all duration-500 shadow-xl group-hover:shadow-mainPurple/10">
-                            <link.icon className="w-6 h-6 text-slate-400 group-hover:text-mainPurple transition-colors duration-300" />
-                        </div>
-                        <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute -bottom-6">
-                            {link.name}
-                        </span>
-                    </a>
-                ))}
+                {contactLinks.map((link) => {
+                    const Icon = link.icon;
+                    return (
+                        <a 
+                            href={link.href}
+                            target={link.name === "Email" ? "_self" : "_blank"}
+                            rel="noopener noreferrer"
+                            class="group relative flex flex-col items-center gap-3"
+                            title={link.name}
+                        >
+                            <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center group-hover:border-mainPurple/50 group-hover:bg-mainPurple/10 transition-all duration-500 hover:scale-110">
+                                <Icon className="w-6 h-6 text-slate-400 group-hover:text-white transition-colors duration-300" />
+                            </div>
+                        </a>
+                    );
+                })}
             </div>
 
-            <div class="mt-24 pt-12 border-t border-white/5">
-                <p class="text-slate-500 font-light text-sm italic">
-                    "Securing the future, one automated workflow at a time."
+            <div class="mt-24">
+                <p class="text-slate-600 font-mono text-xs tracking-widest">
+                    SECURE THE FUTURE // AUTOMATE THE CHAOS
                 </p>
             </div>
         </div>
-        
-        <!-- Decorative Glow -->
-        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-mainPurple/5 blur-[120px] rounded-[100%] pointer-events-none"></div>
     </section>
 </Layout>

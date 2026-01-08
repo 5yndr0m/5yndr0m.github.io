@@ -1,0 +1,1 @@
+import{j as o}from"./jsx-runtime.D_zvdyIk.js";import{m as r}from"./proxy.Xy8q2btb.js";import"./index.D55ewHcJ.js";const m=({children:i,delay:t=0})=>o.jsx(r.div,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0,margin:"-50px"},transition:{duration:.6,delay:t,ease:"easeOut"},children:i});export{m as FadeIn};

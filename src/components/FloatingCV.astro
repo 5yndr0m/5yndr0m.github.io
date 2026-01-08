@@ -5,25 +5,17 @@ import { FileDown } from "lucide-react";
 <a 
     href="/senal_dilanjana_infosec_intern.pdf" 
     download 
-    class="fixed bottom-8 right-8 z-50 group flex items-center gap-3 pl-4 pr-6 py-3 bg-surface/80 backdrop-blur-md border border-mainPurple/30 rounded-full shadow-2xl hover:border-mainPurple hover:shadow-mainPurple/20 transition-all duration-500 hover:-translate-y-1 animate-fade-in"
+    class="fixed bottom-8 right-8 z-50 group flex items-center gap-3 pl-4 pr-6 py-3 bg-zinc-900/90 backdrop-blur-md border border-white/10 rounded-full shadow-2xl hover:border-mainPurple/50 hover:bg-zinc-800 transition-all duration-300 hover:-translate-y-1 animate-fade-in"
 >
-    <!-- Background Glow -->
-    <div class="absolute inset-0 rounded-full bg-mainPurple/5 group-hover:bg-mainPurple/10 transition-colors pointer-events-none"></div>
-    
     <!-- Icon Container -->
-    <div class="w-10 h-10 rounded-full bg-mainPurple/10 flex items-center justify-center text-mainPurple group-hover:bg-mainPurple group-hover:text-white transition-all duration-300">
-        <FileDown size={20} />
+    <div class="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-slate-400 group-hover:text-white group-hover:bg-mainPurple/20 group-hover:border-mainPurple/50 transition-all duration-300">
+        <FileDown size={18} />
     </div>
     
     <!-- Text -->
     <div class="flex flex-col">
-        <span class="text-[10px] font-mono text-mainLavender uppercase tracking-[0.2em] leading-none mb-1">Résumé</span>
+        <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em] leading-none mb-1 group-hover:text-mainPurple transition-colors">Résumé</span>
         <span class="text-xs font-bold text-white uppercase tracking-widest leading-none">Download CV</span>
-    </div>
-
-    <!-- Shine Effect -->
-    <div class="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
-        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-shine"></div>
     </div>
 </a>
 

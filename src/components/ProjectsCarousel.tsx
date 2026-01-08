@@ -79,13 +79,10 @@ export const ProjectsCarousel: React.FC = () => {
                         key={index}
                         className="min-w-[300px] md:min-w-[400px] snap-center"
                     >
-                        <div className={`h-full p-8 rounded-3xl bg-surface border border-white/5 hover:border-${project.color}/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(0,0,0,0.5)] group/card flex flex-col justify-between relative`}>
-                            {/* Decorative Glow */}
-                            <div className={`absolute top-0 right-0 w-32 h-32 bg-${project.color}/5 blur-[60px] rounded-full group-hover/card:bg-${project.color}/10 transition-colors`}></div>
-
+                        <div className={`h-full p-8 rounded-2xl bg-zinc-900/50 backdrop-blur-sm border border-white/5 hover:border-zinc-700 hover:bg-zinc-900 transition-all duration-300 flex flex-col justify-between`}>
                             <div>
                                 <div className="flex justify-between items-start mb-6">
-                                    <div className={`p-3 rounded-2xl bg-${project.color}/10 border border-${project.color}/20`}>
+                                    <div className={`p-3 rounded-xl bg-zinc-800 border border-white/5`}>
                                         <Github className={`w-6 h-6 text-${project.color}`} />
                                     </div>
                                     <a
@@ -98,16 +95,16 @@ export const ProjectsCarousel: React.FC = () => {
                                     </a>
                                 </div>
 
-                                <h3 className="text-2xl font-bold text-white mb-4 group-hover/card:text-gradient-primary">
+                                <h3 className="text-2xl font-bold text-white mb-4">
                                     {project.title}
                                 </h3>
-                                <p className="text-slate-400 font-light leading-relaxed mb-6">
+                                <p className="text-slate-400 font-light leading-relaxed mb-6 text-sm">
                                     {project.description}
                                 </p>
                             </div>
 
                             <div className="pt-6 border-t border-white/5">
-                                <span className={`text-xs font-mono tracking-wider text-${project.color}/70 uppercase`}>
+                                <span className={`text-xs font-mono tracking-wider text-${project.color} uppercase`}>
                                     {project.tech}
                                 </span>
                             </div>

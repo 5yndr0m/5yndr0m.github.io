@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer.astro";
 import SocialSidebar from "../components/SocialSidebar.astro";
 import FloatingCV from "../components/FloatingCV.astro";
+import { ClientRouter } from 'astro:transitions';
 import "../styles/globals.css";
 
 interface Props {
@@ -20,6 +21,9 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+        <ClientRouter />
+	</head>
+        <ClientRouter />
 	</head>
 	<body class="bg-mainBlack text-slate-200 min-h-screen flex flex-col selection:bg-mainPurple/30 selection:text-white">
 		<Navbar client:load />
@@ -36,5 +40,14 @@ const { title } = Astro.props;
 	:root {
 		--font-sans: 'Geist', sans-serif;
 		--font-mono: 'Geist Mono', monospace;
+	}
+	
+	@keyframes shimmer {
+		0% { background-position: 200% center; }
+		100% { background-position: -200% center; }
+	}
+	
+	.animate-shimmer {
+		animation: shimmer 8s linear infinite;
 	}
 </style>

@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import "../styles/global.css";
+---
+
+<Layout>
+    <Navbar />
+    <main
+        class="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-gray-950 px-6"
+    >
+        <section id="hero" class="pt-20">
+            <Hero />
+        </section>
+
+        <section id="projects" class="min-h-screen pt-20">
+            <h2 class="text-center font-mono text-lime-500">
+                [ SEARCHING_FOR_PROJECTS... ]
+            </h2>
+        </section>
+    </main>
+</Layout>

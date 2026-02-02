@@ -1,0 +1,149 @@
+---
+import { Icon } from "astro-icon/components";
+
+const experience = [
+    {
+        title: "TryHackMe: Advent of Cyber 2025",
+        detail: "Gained Hands-on experience in SIEM (Splunk), Malware Analysis, and vulnerability assessments.",
+    },
+    {
+        title: "Home Lab Automation",
+        detail: "Engineered and Maintained secure infrastructure on Linux (Arch/Fedora/CentOS) using Container Orchestration (Podman/Docker) and Cloudflare Tunnels.",
+    },
+    {
+        title: "Disaster Watch (Team Lead)",
+        detail: "Led an 8-person team to develop a MERN-stack community driven disaster reporting system.",
+    },
+];
+
+const certifications = [
+    {
+        title: "TryHackMe: Pre-Security Learning Path",
+        detail: "Foundational cybersecurity pathways completed in 2026.",
+        link: "https://tryhackme.com/p/5yndr0m", // Replace with your actual cert link [cite: 34]
+    },
+    {
+        title: "TryHackMe: Advent of Cyber 2025",
+        detail: "Completed a 24-day intensive cybersecurity challenge.",
+        link: "https://tryhackme.com/p/5yndr0m", // Replace with your actual cert link [cite: 34]
+    },
+    {
+        title: "Cisco: Introduction to Cybersecurity",
+        detail: "Certified in 2024 via Cisco Networking Academy.",
+        link: "#", // Replace with your actual cert link [cite: 34]
+    },
+    {
+        title: "MongoDB: Data Modeling Path",
+        detail: "Specialized in NoSQL database architecture and modeling.",
+        link: "#", // Replace with your actual cert link [cite: 34]
+    },
+];
+---
+
+<section id="about" class="py-20">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+            <div class="space-y-6">
+                <h2
+                    class="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-2"
+                >
+                    <Icon name="mdi:user" class="text-lime-500 w-8 h-8" />
+                    Who Am I?
+                </h2>
+                <div
+                    class="space-y-4 text-gray-600 dark:text-gray-400 leading-relaxed"
+                >
+                    <p>
+                        I am <span
+                            class="text-gray-900 dark:text-white font-semibold"
+                            >Senal Dilanjana</span
+                        >, a Linux-Native Technologist and IT undergraduate at
+                        the University of Vavuniya. With a GPA of 3.65, I focus
+                        on securing digital infrastructures and optimizing
+                        system workflows.
+                    </p>
+                    <p>
+                        My "daily driver" is Arch Linux, and I spend my time
+                        engineering secure, self-hosted automation
+                        infrastructures and testing them. I am deeply interested
+                        in Security Auditing, Ethical Hacking, and Agentic AI
+                        workflows.
+                    </p>
+                    <p>
+                        Outside of the terminal, I enjoy exploring Linux
+                        customization and staying updated on CI/CD pipelines. I
+                        value collaboration and have experience leading
+                        development teams in university and independent
+                        environments.
+                    </p>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div
+                    class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-white dark:bg-gray-950"
+                >
+                    <div
+                        class="p-4 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 font-mono text-sm text-lime-500"
+                    >
+                        ls ~/experience
+                    </div>
+                    <div class="p-2">
+                        {
+                            experience.map((item) => (
+                                <details class="group p-2">
+                                    <summary class="list-none cursor-pointer flex justify-between items-center text-sm font-medium text-lime-500 transition-colors">
+                                        <span>{item.title}</span>
+                                        <Icon
+                                            name="mdi:chevron-down"
+                                            class="w-4 h-4 group-open:rotate-180 transition-transform"
+                                        />
+                                    </summary>
+                                    <p class="pt-2 text-xs text-gray-500 dark:text-gray-400 pl-2 border-l border-lime-500/30 mt-1">
+                                        {item.detail}
+                                    </p>
+                                </details>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <div
+                    class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-white dark:bg-gray-950"
+                >
+                    <div
+                        class="p-4 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 font-mono text-sm text-amber-500"
+                    >
+                        ls ~/certifications
+                    </div>
+                    <div class="p-2">
+                        {
+                            certifications.map((item) => (
+                                <details class="group p-2">
+                                    <summary class="list-none cursor-pointer flex justify-between items-center text-sm font-medium text-amber-500 transition-colors">
+                                        <span>{item.title}</span>
+                                        <Icon
+                                            name="mdi:chevron-down"
+                                            class="w-4 h-4 group-open:rotate-180 transition-transform"
+                                        />
+                                    </summary>
+                                    <div class="pt-2 text-xs text-gray-500 dark:text-gray-400 pl-2 border-l border-amber-500/30 mt-1">
+                                        <p>{item.detail}</p>
+                                        <a
+                                            href={item.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="inline-block mt-2 text-amber-600 dark:text-amber-500 underline hover:text-amber-700 transition-colors"
+                                        >
+                                            View Certificate _
+                                        </a>
+                                    </div>
+                                </details>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

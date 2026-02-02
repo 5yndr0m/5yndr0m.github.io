@@ -1,0 +1,50 @@
+---
+const gear = [
+    {
+        category: "Hardware",
+        items: [
+            "Laptop: HP EliteBook 830 G3",
+            "Monitor: Dell IN1910N",
+            "Mouse: BLAKE WIRELESS WGC5 ",
+        ],
+    },
+    {
+        category: "Cybersecurity",
+        items: ["Splunk SIEM", "Wireshark", "Burp Suite", "Podman"],
+    },
+    {
+        category: "Dev Tools",
+        items: [
+            "Neovim / VS Code",
+            "Alacritty Terminal",
+            "Git / GitHub",
+            "Postman",
+        ],
+    },
+];
+---
+
+<section id="uses" class="py-20">
+    <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-12">Hardware & Software</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            {
+                gear.map((group) => (
+                    <div class="space-y-4">
+                        <h3 class="font-mono text-lime-500 text-sm border-b border-lime-500/20 pb-2">
+                            {group.category}
+                        </h3>
+                        <ul class="space-y-2">
+                            {group.items.map((item) => (
+                                <li class="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
+                                    <span class="w-1 h-1 bg-gray-400 rounded-full" />{" "}
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

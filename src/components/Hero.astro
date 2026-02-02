@@ -1,0 +1,70 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import pfpImage from "../assets/pfp.jpeg";
+---
+
+<section
+    class="min-h-[80vh] flex items-center justify-center bg-white dark:bg-gray-950 px-6 font-sans"
+>
+    <div class="flex flex-col items-center text-center max-w-2xl">
+        <div class="relative w-32 h-32 md:w-40 md:h-40 mb-8">
+            <div
+                class="absolute inset-0 rounded-full bg-linear-to-tr from-lime-500 to-amber-500 blur-2xl opacity-15 animate-pulse"
+            >
+            </div>
+
+            <Image
+                src={pfpImage}
+                alt="Senal Dilanjana - Cybersecurity Enthusiast"
+                width={160}
+                height={160}
+                loading="eager"
+                class="relative w-full h-full rounded-full object-cover border-2 border-gray-100 dark:border-gray-800 shadow-xl"
+            />
+        </div>
+
+        <h1
+            class="text-2xl md:text-3xl font-black tracking-tight text-gray-900 dark:text-white leading-tight"
+        >
+            <span class="text-brand-linux">Linux-Native</span> Technologist & <br
+            />
+            <span class="text-brand-sec">Cybersecurity</span> Enthusiast.
+        </h1>
+
+        <p
+            class="mt-6 text-base text-gray-600 dark:text-gray-400 max-w-lg leading-relaxed"
+        >
+            Hi! I'm <span class="font-semibold text-gray-900 dark:text-white"
+                >Senal Dilanjana</span
+            >. I secure digital infrastructures and analyze network threats
+            using SIEM tools like <span class="italic">Splunk</span>.
+        </p>
+
+        <div class="mt-8 flex gap-6">
+            <a
+                href="https://github.com/5yndrom"
+                class="text-gray-400 hover:text-white transition-colors"
+                aria-label="Visit my GitHub profile"
+            >
+                <Icon name="mdi:github" class="w-8 h-8" />
+            </a>
+
+            <a
+                href="https://www.linkedin.com/in/senalkad"
+                class="text-gray-400 hover:text-blue-500 transition-colors"
+                aria-label="Visit my LinkedIn profile"
+            >
+                <Icon name="mdi:linkedin" class="w-8 h-8" />
+            </a>
+
+            <a
+                href="mailto:contact@dilanjana.me"
+                class="text-gray-400 hover:text-amber-500 transition-colors"
+                aria-label="Contact me through email"
+            >
+                <Icon name="mdi:email" class="w-8 h-8" />
+            </a>
+        </div>
+    </div>
+</section>

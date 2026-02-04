@@ -1,0 +1,159 @@
+---
+import { Icon } from "astro-icon/components";
+
+const socialLinks = [
+    {
+        name: "LinkedIn",
+        icon: "mdi:linkedin",
+        href: "https://linkedin.com/in/senalkad",
+        color: "hover:text-blue-500",
+        username: "linkedin.com/in/senalkad",
+    },
+    {
+        name: "GitHub",
+        icon: "mdi:github",
+        href: "https://github.com/5yndr0m",
+        color: "hover:text-black dark:hover:text-white",
+        username: "github.com/5yndr0m",
+    },
+    {
+        name: "Twitter / X",
+        icon: "mdi:twitter",
+        href: "https://x.com/Syndromsdk",
+        color: "hover:text-sky-400",
+        username: "x.com/Syndromsdk",
+    },
+    {
+        name: "Email",
+        icon: "mdi:email",
+        href: "mailto:contact@dilanjana.me",
+        color: "hover:text-red-400",
+        username: "contact@dilanjana.me",
+    },
+];
+
+const faqs = [
+    {
+        q: "Are you available for work opportunities?",
+        a: "Yes! I am actively seeking roles focusing on Cybersecurity, System Administration, or DevOps where I can apply my expertise in Linux-native environments.",
+    },
+    {
+        q: "What is your typical response time?",
+        a: "I usually respond within 24-48 hours. For urgent matters, LinkedIn DM is the fastest way to reach me.",
+    },
+    {
+        q: "Do you handle freelance projects?",
+        a: "I take on select freelance work involving Linux server setup, workflow automation (n8n), and full-stack web development.",
+    },
+    {
+        q: "Can we collaborate on Open Source?",
+        a: "Absolutely. I am passionate about the Linux ecosystem. If you have an interesting project on GitHub, let's talk.",
+    },
+    {
+        q: "Are you open to on-site work?",
+        a: "I am primarily based in Sri Lanka and open to hybrid/on-site roles within the region, or fully remote global opportunities.",
+    },
+];
+---
+
+<section
+    id="contact"
+    class="py-20 border-t border-gray-100 dark:border-gray-900"
+>
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-16">
+            <div class="space-y-8">
+                <div>
+                    <h2
+                        class="text-3xl font-bold text-gray-900 dark:text-white mb-6"
+                    >
+                        Let's Collaborate
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Whether you're looking to hire for a professional role,
+                        start a project, or just discuss the future of AI and
+                        Linux—I'm always down to chat.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    {
+                        socialLinks.map((link) => (
+                            <a
+                                href={link.href}
+                                target="_blank"
+                                class={`flex items-center text-gray-500 gap-3 p-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50 transition-all ${link.color} group`}
+                            >
+                                <Icon
+                                    name={link.icon}
+                                    class="w-6 h-6 group-hover:scale-110 transition-transform"
+                                />
+                                <div>
+                                    <span class="text-sm font-medium">
+                                        {link.name}
+                                    </span>
+                                    <br />
+                                    <span class="text-xs font-medium">
+                                        {link.username}
+                                    </span>
+                                </div>
+                            </a>
+                        ))
+                    }
+                </div>
+
+                <div
+                    class="p-4 rounded-xl bg-lime-500/10 border border-lime-500/20"
+                >
+                    <div class="flex items-center gap-2 text-lime-500 mb-1">
+                        <Icon name="mdi:clock-outline" class="w-4 h-4" />
+                        <span
+                            class="text-xs font-mono font-bold uppercase tracking-widest"
+                            >Availability_Status</span
+                        >
+                    </div>
+                    <p
+                        class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+                    >
+                        Currently responding to inquiries within <span
+                            class="text-gray-900 dark:text-white font-semibold"
+                            >48 hours</span
+                        >. Available for remote collaboration across all time
+                        zones.
+                    </p>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <h3
+                    class="font-mono text-sm text-lime-500 uppercase tracking-widest flex items-center gap-2"
+                >
+                    <Icon
+                        name="mdi:frequently-asked-questions"
+                        class="w-5 h-5"
+                    />
+                    General_FAQ
+                </h3>
+
+                <div class="space-y-2">
+                    {
+                        faqs.map((faq) => (
+                            <details class="group border-b border-gray-100 dark:border-gray-800 pb-4">
+                                <summary class="list-none cursor-pointer flex justify-between items-center text-sm font-medium text-gray-900 dark:text-gray-200 hover:text-lime-500 transition-colors py-2">
+                                    <span>{faq.q}</span>
+                                    <Icon
+                                        name="mdi:plus"
+                                        class="w-4 h-4 text-gray-500 group-open:rotate-45 transition-transform"
+                                    />
+                                </summary>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed pl-2 border-l-2 border-lime-500/50 mt-2">
+                                    {faq.a}
+                                </p>
+                            </details>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

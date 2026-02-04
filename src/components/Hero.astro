@@ -9,18 +9,13 @@ import pfpImage from "../assets/pfp.jpeg";
 >
     <div class="flex flex-col items-center text-center max-w-2xl">
         <div class="relative w-32 h-32 md:w-40 md:h-40 mb-8">
-            <div
-                class="absolute inset-0 rounded-full bg-linear-to-tr from-lime-500 to-amber-500 blur-2xl opacity-15 animate-pulse"
-            >
-            </div>
-
             <Image
                 src={pfpImage}
                 alt="Senal Dilanjana - Cybersecurity Enthusiast"
                 width={160}
                 height={160}
                 loading="eager"
-                class="relative w-full h-full rounded-full object-cover border-2 border-gray-100 dark:border-gray-800 shadow-xl"
+                class="relative w-full h-full rounded-full object-cover border-2 border-gray-800 dark:border-gray-100 shadow-xl"
             />
         </div>
 
@@ -44,7 +39,7 @@ import pfpImage from "../assets/pfp.jpeg";
         <div class="mt-8 flex gap-6">
             <a
                 href="https://github.com/5yndrom"
-                class="text-gray-400 hover:text-white transition-colors"
+                class="text-gray-400 hover:text-black dark:hover:text-white transition-colors"
                 aria-label="Visit my GitHub profile"
             >
                 <Icon name="mdi:github" class="w-8 h-8" />

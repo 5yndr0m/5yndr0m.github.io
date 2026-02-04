@@ -8,31 +8,41 @@ import { Icon } from "astro-icon/components";
     <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="/" class="flex items-center gap-2 group">
             <div
-                class="w-8 h-8 bg-lime-500 rounded flex items-center justify-center group-hover:rotate-12 transition-transform"
+                class="w-8 h-8 bg-lime-500 rounded flex items-center justify-center group-hover:scale-110 hover:bg-amber-500 transition-transform"
             >
-                <Icon name="mdi:terminal" class="text-black w-5 h-5" />
+                <Icon name="mdi:terminal" class="text-black w-6 h-6" />
             </div>
             <span
-                class="font-bold tracking-tighter text-gray-900 dark:text-white uppercase italic"
-                >Senal.sh</span
+                class="text-2xl font-bold tracking-tighter text-gray-900 dark:text-white"
+                >Dilanjana.me</span
             >
         </a>
 
         <div class="hidden md:flex items-center gap-8">
             <a
                 href="#about"
-                class="text-sm font-medium text-gray-500 hover:text-lime-500 transition-colors"
-                >/about</a
+                class="text-sm font-medium text-gray-500 hover:text-lime-700 dark:hover:text-lime-500 transition-colors"
+                aria-label="to About Section">/about</a
             >
             <a
                 href="#projects"
-                class="text-sm font-medium text-gray-500 hover:text-lime-500 transition-colors"
-                >/projects</a
+                class="text-sm font-medium text-gray-500 hover:text-lime-700 dark:hover:text-lime-500 transition-colors"
+                aria-label="to Projects Section">/projects</a
             >
             <a
-                href="#skills"
-                class="text-sm font-medium text-gray-500 hover:text-lime-500 transition-colors"
-                >/skills</a
+                href="#uses"
+                class="text-sm font-medium text-gray-500 hover:text-lime-700 dark:hover:text-lime-500 transition-colors"
+                aria-label="to Uses Section">/uses</a
+            >
+            <a
+                href="#contact"
+                class="text-sm font-medium text-gray-500 hover:text-lime-700 dark:hover:text-lime-500 transition-colors"
+                aria-label="to Contact Section">/contact</a
+            >
+            <a
+                href="#blog"
+                class="text-sm font-medium text-gray-500 hover:text-lime-700 dark:hover:text-lime-500 transition-colors"
+                aria-label="to Blog Section">/blog</a
             >
             <a
                 href="/resume.pdf"

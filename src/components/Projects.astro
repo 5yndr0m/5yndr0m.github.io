@@ -1,0 +1,80 @@
+---
+import { Icon } from "astro-icon/components";
+
+const projects = [
+    {
+        name: "Disaster Watch",
+        description:
+            "A community-driven MERN-stack mobile and web application for real-time disaster reporting and administration. Led an 8-person team through the full SDLC.",
+        tech: ["React Native", "Express", "MongoDB"],
+        link: "https://github.com/5yndr0m/disaster-watch", // Update with your actual repo
+    },
+    {
+        name: "Home Lab Automation",
+        description:
+            "Secure, self-hosted infrastructure on Arch Linux using Podman pods and Cloudflare Tunnels to automate system-level execution via SSH and n8n.",
+        tech: ["Arch Linux", "Podman", "n8n", "Cloudflare"],
+        link: "#",
+    },
+    {
+        name: "Advent of Cyber Lab",
+        description:
+            "Security research environment for log analysis in Splunk, network traffic pattern identification, and malware analysis in controlled environments.",
+        tech: ["Splunk", "Wireshark", "Malware Analysis"],
+        link: "#",
+    },
+];
+---
+
+<section id="projects" class="py-20">
+    <div class="max-w-5xl mx-auto px-6">
+        <h2
+            class="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-2 mb-12"
+        >
+            <Icon name="mdi:code-braces" class="text-lime-500 w-8 h-8" />
+            Projects
+        </h2>
+
+        <div class="grid gap-6">
+            {
+                projects.map((project) => (
+                    <div class="group relative border border-gray-200 dark:border-gray-800 rounded-xl p-6 bg-white dark:bg-gray-950 hover:border-lime-500/50 transition-colors">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-lime-500 transition-colors">
+                                    {project.name}
+                                </h3>
+                                <p class="mt-2 text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-2xl">
+                                    {project.description}
+                                </p>
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    {project.tech.map((t) => (
+                                        <span class="text-[10px] font-mono px-2 py-1 rounded bg-gray-100 dark:bg-gray-900 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-800">
+                                            {t}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <a
+                                href={project.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="p-2 rounded-lg bg-gray-50 dark:bg-gray-900 text-gray-400 hover:text-lime-500 transition-all"
+                                aria-label={`View ${project.name} source code`}
+                            >
+                                <Icon name="mdi:github" class="w-6 h-6" />
+                            </a>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+
+        <div class="mt-12 text-center">
+            <p class="font-mono text-xs text-gray-500 animate-pulse">
+                [ END_OF_TRANSMISSION ]
+            </p>
+        </div>
+    </div>
+</section>

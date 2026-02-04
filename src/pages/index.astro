@@ -2,6 +2,12 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Projects from "../components/Projects.astro";
+import Contact from "../components/Contact.astro";
+import Uses from "../components/Uses.astro";
+import Blog from "../components/Blog.astro";
+import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 ---
 
@@ -14,10 +20,25 @@ import "../styles/global.css";
             <Hero />
         </section>
 
+        <section id="about" class="min-h-screen pt-20">
+            <About />
+        </section>
+
         <section id="projects" class="min-h-screen pt-20">
-            <h2 class="text-center font-mono text-lime-500">
-                [ SEARCHING_FOR_PROJECTS... ]
-            </h2>
+            <Projects />
+        </section>
+
+        <section id="blog" class="min-h-screen pt-20">
+            <Blog />
+        </section>
+
+        <section id="uses" class="min-h-screen pt-20">
+            <Uses />
+        </section>
+
+        <section id="contact" class="min-h-screen pt-20">
+            <Contact />
         </section>
     </main>
+    <Footer />
 </Layout>

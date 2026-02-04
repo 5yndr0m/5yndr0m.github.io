@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<section id="blog" class="py-20">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-10">
+            {
+                posts.map((post) => (
+                    <a href={`/blog/${post.slug}`} class="group">
+                        <div class="aspect-video bg-gray-900 rounded-3xl overflow-hidden mb-4">
+                            <img
+                                src={post.data.heroImage}
+                                class="group-hover:scale-105 transition-transform"
+                            />
+                        </div>
+                        <h3 class="text-xl font-bold group-hover:text-lime-500">
+                            {post.data.title}
+                        </h3>
+                        <p class="text-gray-500 text-sm">
+                            {post.data.description}
+                        </p>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,61 @@
+---
+import { Icon } from "astro-icon/components";
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+    class="border-t border-gray-100 dark:border-gray-900 bg-white dark:bg-gray-950 py-12"
+>
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="flex flex-col md:grid md:grid-cols-3 items-center gap-8">
+            <div class="flex flex-col items-center md:items-start gap-2">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-lime-500 rounded-full animate-pulse">
+                    </div>
+                    <span
+                        class="font-mono text-[10px] text-gray-500 uppercase tracking-widest"
+                        >System_Active</span
+                    >
+                </div>
+                <p class="text-sm font-bold dark:text-white tracking-tighter">
+                    Dilanjana.me
+                </p>
+            </div>
+
+            <div class="flex items-center justify-center gap-6">
+                <a
+                    href="https://github.com/5yndr0m"
+                    target="_blank"
+                    class="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    aria-label="GitHub"
+                >
+                    <Icon name="mdi:github" class="w-5 h-5" />
+                </a>
+                <a
+                    href="https://linkedin.com/in/senalkad"
+                    target="_blank"
+                    class="text-gray-400 hover:text-blue-500 transition-colors"
+                    aria-label="LinkedIn"
+                >
+                    <Icon name="mdi:linkedin" class="w-5 h-5" />
+                </a>
+                <a
+                    href="mailto:contact@dilanjana.me"
+                    class="text-gray-400 hover:text-red-400 transition-colors"
+                    aria-label="Email"
+                >
+                    <Icon name="mdi:email" class="w-5 h-5" />
+                </a>
+            </div>
+
+            <div class="text-center md:text-right">
+                <p
+                    class="text-[10px] font-mono text-gray-500 uppercase tracking-tight"
+                >
+                    &copy; {currentYear} Senal Dilanjana. <br />
+                    Built with Astro 5.0 & Tailwind 4.0
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

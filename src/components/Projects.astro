@@ -7,7 +7,7 @@ const projects = [
         description:
             "A community-driven MERN-stack mobile and web application for real-time disaster reporting and administration. Led an 8-person team through the full SDLC.",
         tech: ["React Native", "Express", "MongoDB"],
-        link: "https://github.com/5yndr0m/disaster-watch", // Update with your actual repo
+        link: "https://github.com/5yndr0m/disaster-watch",
     },
     {
         name: "Home Lab Automation",
@@ -17,39 +17,48 @@ const projects = [
         link: "#",
     },
     {
-        name: "Advent of Cyber Lab",
+        name: "NetSniff",
         description:
-            "Security research environment for log analysis in Splunk, network traffic pattern identification, and malware analysis in controlled environments.",
-        tech: ["Splunk", "Wireshark", "Malware Analysis"],
-        link: "#",
+            "A low-level network monitoring tool built in Python that captures and analyzes live data packets as they travel through a network interface.",
+        tech: [
+            "Python",
+            "Network Programming",
+            "Packet Analysis",
+            "Network Security",
+            "Network Monitoring",
+        ],
+        link: "https://github.com/5yndr0m/netsniff",
     },
 ];
 ---
 
-<section id="projects" class="py-20">
+<section
+    id="projects"
+    class="py-24 border-t border-gray-100 dark:border-gray-900 bg-white dark:bg-gray-950"
+>
     <div class="max-w-5xl mx-auto px-6">
         <h2
-            class="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-2 mb-12"
+            class="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3 mb-16"
         >
-            <Icon name="mdi:code-braces" class="text-lime-500 w-8 h-8" />
+            <span class="w-2 h-8 bg-lime-500 rounded-full"></span>
             Projects
         </h2>
 
-        <div class="grid gap-6">
+        <div class="grid gap-8">
             {
                 projects.map((project) => (
-                    <div class="group relative border border-gray-200 dark:border-gray-800 rounded-xl p-6 bg-white dark:bg-gray-950 hover:border-lime-500/50 transition-colors">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-lime-500 transition-colors">
+                    <div class="group relative border border-gray-200 dark:border-gray-800 rounded-2xl p-8 bg-gray-50/30 dark:bg-gray-900/30 hover:border-lime-500/30 transition-all duration-300">
+                        <div class="flex justify-between items-start gap-4">
+                            <div class="space-y-4">
+                                <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-lime-500 transition-colors">
                                     {project.name}
                                 </h3>
-                                <p class="mt-2 text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-2xl">
+                                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-2xl">
                                     {project.description}
                                 </p>
-                                <div class="mt-4 flex flex-wrap gap-2">
+                                <div class="flex flex-wrap gap-2 pt-2">
                                     {project.tech.map((t) => (
-                                        <span class="text-[10px] font-mono px-2 py-1 rounded bg-gray-100 dark:bg-gray-900 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-800">
+                                        <span class="text-[10px] font-mono font-medium px-2.5 py-1 rounded-md bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700">
                                             {t}
                                         </span>
                                     ))}
@@ -60,7 +69,7 @@ const projects = [
                                 href={project.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="p-2 rounded-lg bg-gray-50 dark:bg-gray-900 text-gray-400 hover:text-lime-500 transition-all"
+                                class="shrink-0 p-3 rounded-xl bg-white dark:bg-gray-800 text-gray-400 hover:text-lime-500 hover:scale-110 border border-transparent hover:border-lime-500/20 shadow-sm transition-all"
                                 aria-label={`View ${project.name} source code`}
                             >
                                 <Icon name="mdi:github" class="w-6 h-6" />
@@ -69,12 +78,6 @@ const projects = [
                     </div>
                 ))
             }
-        </div>
-
-        <div class="mt-12 text-center">
-            <p class="font-mono text-xs text-gray-500 animate-pulse">
-                [ END_OF_TRANSMISSION ]
-            </p>
         </div>
     </div>
 </section>

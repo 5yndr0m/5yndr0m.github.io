@@ -3,56 +3,44 @@ import { Icon } from "astro-icon/components";
 ---
 
 <nav
-    class="fixed top-0 left-0 w-full z-100 bg-white/70 dark:bg-gray-950/70 backdrop-blur-xl border-b border-gray-200 dark:border-gray-800"
+    class="fixed top-0 left-0 w-full z-100 bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl border-b border-gray-200 dark:border-gray-800"
 >
     <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="/" class="flex items-center gap-2 group">
             <div
-                class="w-8 h-8 bg-lime-500 rounded flex items-center justify-center group-hover:scale-110 hover:bg-amber-500 transition-transform"
+                class="w-8 h-8 bg-lime-500 rounded-lg flex items-center justify-center group-hover:rotate-6 transition-all duration-300"
             >
-                <Icon name="mdi:terminal" class="text-black w-6 h-6" />
+                <Icon name="mdi:terminal" class="text-black w-5 h-5" />
             </div>
             <span
-                class="text-2xl font-bold tracking-tighter text-gray-900 dark:text-white"
+                class="text-xl font-bold tracking-tighter text-gray-900 dark:text-white"
                 >Dilanjana.me</span
             >
         </a>
 
-        <div class="hidden md:flex items-center gap-8">
-            <a
-                href="#about"
-                class="text-sm font-medium text-gray-500 hover:text-lime-700 dark:hover:text-lime-500 transition-colors"
-                aria-label="to About Section">/about</a
-            >
-            <a
-                href="#projects"
-                class="text-sm font-medium text-gray-500 hover:text-lime-700 dark:hover:text-lime-500 transition-colors"
-                aria-label="to Projects Section">/projects</a
-            >
-            <a
-                href="#uses"
-                class="text-sm font-medium text-gray-500 hover:text-lime-700 dark:hover:text-lime-500 transition-colors"
-                aria-label="to Uses Section">/uses</a
-            >
-            <a
-                href="#contact"
-                class="text-sm font-medium text-gray-500 hover:text-lime-700 dark:hover:text-lime-500 transition-colors"
-                aria-label="to Contact Section">/contact</a
-            >
-            <a
-                href="#blog"
-                class="text-sm font-medium text-gray-500 hover:text-lime-700 dark:hover:text-lime-500 transition-colors"
-                aria-label="to Blog Section">/blog</a
-            >
+        <div class="hidden md:flex items-center gap-6">
+            {
+                ["about", "projects", "uses", "blog", "contact"].map((link) => (
+                    <a
+                        href={`#${link}`}
+                        class="text-xs font-mono font-medium text-gray-500 hover:text-lime-600 dark:hover:text-lime-400 transition-colors uppercase tracking-widest"
+                    >
+                        /{link}
+                    </a>
+                ))
+            }
             <a
                 href="/resume.pdf"
-                class="px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-black rounded-lg text-xs font-bold hover:scale-105 transition-transform"
+                class="ml-4 px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full text-[10px] font-bold tracking-widest hover:bg-lime-500 dark:hover:bg-lime-400 transition-colors"
             >
                 DOWNLOAD_CV
             </a>
         </div>
 
-        <button class="md:hidden text-gray-500" aria-label="Toggle Menu">
+        <button
+            class="md:hidden text-gray-500 hover:text-lime-500 transition-colors"
+            aria-label="Toggle Menu"
+        >
             <Icon name="mdi:menu" class="w-6 h-6" />
         </button>
     </div>

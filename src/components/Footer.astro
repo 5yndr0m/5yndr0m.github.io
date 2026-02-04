@@ -4,29 +4,39 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer
-    class="border-t border-gray-100 dark:border-gray-900 bg-white dark:bg-gray-950 py-12"
+    class="border-t border-gray-100 dark:border-gray-900 bg-white dark:bg-gray-950 py-16"
 >
     <div class="max-w-5xl mx-auto px-6">
-        <div class="flex flex-col md:grid md:grid-cols-3 items-center gap-8">
-            <div class="flex flex-col items-center md:items-start gap-2">
-                <div class="flex items-center gap-2">
-                    <div class="w-2 h-2 bg-lime-500 rounded-full animate-pulse">
+        <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-10">
+            <div class="flex flex-col items-center md:items-start gap-3">
+                <div class="flex items-center gap-2.5">
+                    <div class="relative flex h-2 w-2">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"
+                        ></span>
+                        <span
+                            class="relative inline-flex rounded-full h-2 w-2 bg-lime-500"
+                        ></span>
                     </div>
                     <span
-                        class="font-mono text-[10px] text-gray-500 uppercase tracking-widest"
+                        class="font-mono text-[10px] text-lime-600 dark:text-lime-400 uppercase tracking-[0.2em] font-bold"
                         >System_Active</span
                     >
                 </div>
-                <p class="text-sm font-bold dark:text-white tracking-tighter">
-                    Dilanjana.me
+                <p
+                    class="text-lg font-bold text-gray-900 dark:text-white tracking-tighter"
+                >
+                    dilanjana.me
                 </p>
             </div>
 
-            <div class="flex items-center justify-center gap-6">
+            <div
+                class="flex items-center justify-center gap-8 order-last md:order-none"
+            >
                 <a
                     href="https://github.com/5yndr0m"
                     target="_blank"
-                    class="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    class="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all hover:scale-110"
                     aria-label="GitHub"
                 >
                     <Icon name="mdi:github" class="w-5 h-5" />
@@ -34,26 +44,26 @@ const currentYear = new Date().getFullYear();
                 <a
                     href="https://linkedin.com/in/senalkad"
                     target="_blank"
-                    class="text-gray-400 hover:text-blue-500 transition-colors"
+                    class="text-gray-400 hover:text-blue-500 transition-all hover:scale-110"
                     aria-label="LinkedIn"
                 >
                     <Icon name="mdi:linkedin" class="w-5 h-5" />
                 </a>
                 <a
                     href="mailto:contact@dilanjana.me"
-                    class="text-gray-400 hover:text-red-400 transition-colors"
+                    class="text-gray-400 hover:text-red-400 transition-all hover:scale-110"
                     aria-label="Email"
                 >
                     <Icon name="mdi:email" class="w-5 h-5" />
                 </a>
             </div>
 
-            <div class="text-center md:text-right">
+            <div class="text-center md:text-right space-y-2">
                 <p
-                    class="text-[10px] font-mono text-gray-500 uppercase tracking-tight"
+                    class="text-[10px] font-mono text-gray-400 dark:text-gray-600 uppercase tracking-widest leading-relaxed"
                 >
-                    &copy; {currentYear} Senal Dilanjana. <br />
-                    Built with Astro 5.0 & Tailwind 4.0
+                    &copy; {currentYear} Senal Dilanjana <br />
+                    v5.0.0-stable // Astro + Tailwind
                 </p>
             </div>
         </div>

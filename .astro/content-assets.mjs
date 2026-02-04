@@ -1,1 +1,6 @@
-export default new Map();
+
+import __ASTRO_IMAGE_IMPORT_Z1DFlRR from "../../assets/blog/OSI_Model_Layers.excalidraw.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2FDecoding+the+Wire.md";
+import __ASTRO_IMAGE_IMPORT_6Oy6k from "../../assets/blog/NetSniff_Flow.excalidraw.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2FDecoding+the+Wire.md";
+import __ASTRO_IMAGE_IMPORT_1sOoBe from "../../assets/thumbnails/decoding_the_wire.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2FDecoding+the+Wire.md";
+export default new Map([["../../assets/blog/OSI_Model_Layers.excalidraw.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2FDecoding+the+Wire.md", __ASTRO_IMAGE_IMPORT_Z1DFlRR], ["../../assets/blog/NetSniff_Flow.excalidraw.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2FDecoding+the+Wire.md", __ASTRO_IMAGE_IMPORT_6Oy6k], ["../../assets/thumbnails/decoding_the_wire.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2FDecoding+the+Wire.md", __ASTRO_IMAGE_IMPORT_1sOoBe]]);
+		

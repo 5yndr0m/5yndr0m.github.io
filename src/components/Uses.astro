@@ -1,50 +1,163 @@
 ---
 const gear = [
     {
-        category: "Hardware",
+        category: "Hardware Setup",
+        description: "Devices and peripherals that power my workspace.",
         items: [
-            "Laptop: HP EliteBook 830 G3",
-            "Monitor: Dell IN1910N",
-            "Mouse: BLAKE WIRELESS WGC5 ",
+            { model: "HP EliteBook 830 G3", detail: "Main workstation" },
+            { model: "Dell IN1910N", detail: "Secondary display" },
+            {
+                model: "Samsung Galaxy F05 (RisingOS)",
+                detail: "Daily driver Smartphone",
+            },
         ],
     },
     {
-        category: "Cybersecurity",
-        items: ["Splunk SIEM", "Wireshark", "Burp Suite", "Podman"],
+        category: "Development Environment",
+        description: "Core tools and configurations for my dev setup.",
+        items: [
+            {
+                model: "Arch Linux (Hyprland + Quickshell)",
+                detail: "Lightweight and minimal rolling release",
+            },
+            {
+                model: "Fedora & CentOS",
+                detail: "Enterprise-grade environments and server testing",
+            },
+            {
+                model: "Fish Shell",
+                detail: "Intuitive shell with smart completions",
+            },
+            {
+                model: "Starship",
+                detail: "Fast, cross-shell customizable prompt",
+            },
+            { model: "Zed & Neovim", detail: "High-performance code editing" },
+            {
+                model: "Wireshark & Burp Suite",
+                detail: "Network analysis and web security auditing",
+            },
+        ],
     },
     {
-        category: "Dev Tools",
+        category: "Software & Services",
+        description: "Applications I rely on for productivity and security.",
         items: [
-            "Neovim / VS Code",
-            "Alacritty Terminal",
-            "Git / GitHub",
-            "Postman",
+            {
+                model: "Zen Browser",
+                detail: "Primary privacy-focused web navigator",
+            },
+            {
+                model: "Obsidian",
+                detail: "Second brain: note-taking and knowledge management",
+            },
+            {
+                model: "Telegram & Discord",
+                detail: "Community engagement and secure communication",
+            },
+            {
+                model: "YouTube Music",
+                detail: "Workplace focus and entertainment",
+            },
+        ],
+    },
+    {
+        category: "Tech Stack",
+        description: "Languages and technologies I use to build and deploy.",
+        items: [
+            {
+                model: "Python, JavaScript, Bash",
+                detail: "System automation and core scripting",
+            },
+            {
+                model: "MERN Stack, Next.js, Astro",
+                detail: "Modern full-stack web development",
+            },
+            {
+                model: "Tailwind CSS, Flask, Docker",
+                detail: "UI design, micro-frameworks, and containerization",
+            },
+            {
+                model: "MongoDB, MySQL, Cloudflare",
+                detail: "Data persistence and edge infrastructure",
+            },
         ],
     },
 ];
 ---
 
-<section id="uses" class="py-20">
+<section
+    id="uses"
+    class="py-24 border-t border-gray-100 dark:border-gray-900 bg-white dark:bg-gray-950"
+>
     <div class="max-w-5xl mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-12">Hardware & Software</h2>
-        <div class="grid md:grid-cols-3 gap-8">
+        <header class="mb-20">
+            <h2
+                class="text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight"
+            >
+                /uses
+            </h2>
+            <p
+                class="text-gray-500 dark:text-gray-400 font-mono text-xs uppercase tracking-[0.2em] max-w-xl"
+            >
+                Hardware, Software, and the Tech Stack behind my daily workflow.
+            </p>
+        </header>
+
+        <div class="space-y-16">
             {
                 gear.map((group) => (
-                    <div class="space-y-4">
-                        <h3 class="font-mono text-lime-500 text-sm border-b border-lime-500/20 pb-2">
-                            {group.category}
-                        </h3>
-                        <ul class="space-y-2">
-                            {group.items.map((item) => (
-                                <li class="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
-                                    <span class="w-1 h-1 bg-gray-400 rounded-full" />{" "}
-                                    {item}
-                                </li>
-                            ))}
-                        </ul>
+                    <div class="grid md:grid-cols-3 gap-10 border-t border-gray-100 dark:border-gray-900/50 pt-12">
+                        <div class="md:col-span-1">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                                {group.category}
+                            </h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                                {group.description}
+                            </p>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-8">
+                                {group.items.map((item) => (
+                                    <li class="group">
+                                        <div class="flex flex-col gap-1.5">
+                                            <span class="text-lime-600 dark:text-lime-400 font-bold text-sm tracking-tight group-hover:text-lime-500 transition-colors">
+                                                {item.model}
+                                            </span>
+                                            {item.detail && (
+                                                <span class="text-[11px] text-gray-400 dark:text-gray-500 font-mono italic leading-tight">
+                                                    // {item.detail}
+                                                </span>
+                                            )}
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 ))
             }
         </div>
+
+        <footer
+            class="mt-32 pt-10 border-t border-gray-100 dark:border-gray-900 flex justify-between items-center"
+        >
+            <p
+                class="text-[10px] text-gray-400 dark:text-gray-600 font-mono uppercase tracking-widest"
+            >
+                Last updated: {
+                    new Date().toLocaleDateString("en-US", {
+                        month: "long",
+                        year: "numeric",
+                    })
+                }
+            </p>
+            <div class="flex gap-2">
+                <div class="w-2 h-2 rounded-full bg-lime-500/20"></div>
+                <div class="w-2 h-2 rounded-full bg-lime-500/40"></div>
+                <div class="w-2 h-2 rounded-full bg-lime-500/60"></div>
+            </div>
+        </footer>
     </div>
 </section>

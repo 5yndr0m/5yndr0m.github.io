@@ -6,28 +6,28 @@ const socialLinks = [
         name: "LinkedIn",
         icon: "mdi:linkedin",
         href: "https://linkedin.com/in/senalkad",
-        color: "hover:text-blue-500",
-        username: "linkedin.com/in/senalkad",
+        color: "hover:border-blue-500/50 hover:text-blue-500",
+        username: "in/senalkad",
     },
     {
         name: "GitHub",
         icon: "mdi:github",
         href: "https://github.com/5yndr0m",
-        color: "hover:text-black dark:hover:text-white",
-        username: "github.com/5yndr0m",
+        color: "hover:border-lime-500/50 hover:text-lime-500",
+        username: "github/5yndr0m",
     },
     {
         name: "Twitter / X",
         icon: "mdi:twitter",
         href: "https://x.com/Syndromsdk",
-        color: "hover:text-sky-400",
-        username: "x.com/Syndromsdk",
+        color: "hover:border-sky-400/50 hover:text-sky-400",
+        username: "@Syndromsdk",
     },
     {
         name: "Email",
         icon: "mdi:email",
         href: "mailto:contact@dilanjana.me",
-        color: "hover:text-red-400",
+        color: "hover:border-red-400/50 hover:text-red-400",
         username: "contact@dilanjana.me",
     },
 ];
@@ -58,44 +58,44 @@ const faqs = [
 
 <section
     id="contact"
-    class="py-20 border-t border-gray-100 dark:border-gray-900"
+    class="py-24 border-t border-gray-100 dark:border-gray-900 bg-white dark:bg-gray-950"
 >
     <div class="max-w-5xl mx-auto px-6">
-        <div class="grid md:grid-cols-2 gap-16">
-            <div class="space-y-8">
+        <div class="grid md:grid-cols-2 gap-20">
+            <div class="space-y-10">
                 <div>
                     <h2
-                        class="text-3xl font-bold text-gray-900 dark:text-white mb-6"
+                        class="text-3xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3"
                     >
+                        <span class="w-2 h-8 bg-lime-500 rounded-full"></span>
                         Let's Collaborate
                     </h2>
-                    <p class="text-gray-600 dark:text-gray-400">
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
                         Whether you're looking to hire for a professional role,
                         start a project, or just discuss the future of AI and
                         Linux—I'm always down to chat.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {
                         socialLinks.map((link) => (
                             <a
                                 href={link.href}
                                 target="_blank"
-                                class={`flex items-center text-gray-500 gap-3 p-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50 transition-all ${link.color} group`}
+                                class={`flex items-center gap-4 p-4 rounded-2xl border border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-900/50 transition-all duration-300 group ${link.color}`}
                             >
                                 <Icon
                                     name={link.icon}
-                                    class="w-6 h-6 group-hover:scale-110 transition-transform"
+                                    class="w-6 h-6 text-gray-400 group-hover:scale-110 transition-transform"
                                 />
                                 <div>
-                                    <span class="text-sm font-medium">
+                                    <p class="text-xs font-bold text-gray-900 dark:text-white">
                                         {link.name}
-                                    </span>
-                                    <br />
-                                    <span class="text-xs font-medium">
+                                    </p>
+                                    <p class="text-[10px] font-mono text-gray-500 uppercase tracking-tighter mt-0.5">
                                         {link.username}
-                                    </span>
+                                    </p>
                                 </div>
                             </a>
                         ))
@@ -103,34 +103,37 @@ const faqs = [
                 </div>
 
                 <div
-                    class="p-4 rounded-xl bg-lime-500/10 border border-lime-500/20"
+                    class="p-6 rounded-2xl bg-lime-500/5 border border-lime-500/10 flex gap-4 items-start"
                 >
-                    <div class="flex items-center gap-2 text-lime-500 mb-1">
-                        <Icon name="mdi:clock-outline" class="w-4 h-4" />
+                    <Icon
+                        name="mdi:clock-outline"
+                        class="w-5 h-5 text-lime-500 shrink-0 mt-0.5"
+                    />
+                    <div class="space-y-1">
                         <span
-                            class="text-xs font-mono font-bold uppercase tracking-widest"
+                            class="text-[10px] font-mono font-bold text-lime-600 dark:text-lime-400 uppercase tracking-[0.2em]"
                             >Availability_Status</span
                         >
+                        <p
+                            class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+                        >
+                            Currently responding within <span
+                                class="text-gray-900 dark:text-white font-semibold italic"
+                                >48 hours</span
+                            >. Available for remote collaboration across all
+                            time zones.
+                        </p>
                     </div>
-                    <p
-                        class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
-                    >
-                        Currently responding to inquiries within <span
-                            class="text-gray-900 dark:text-white font-semibold"
-                            >48 hours</span
-                        >. Available for remote collaboration across all time
-                        zones.
-                    </p>
                 </div>
             </div>
 
-            <div class="space-y-6">
+            <div class="space-y-8">
                 <h3
-                    class="font-mono text-sm text-lime-500 uppercase tracking-widest flex items-center gap-2"
+                    class="font-mono text-[11px] text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2"
                 >
                     <Icon
                         name="mdi:frequently-asked-questions"
-                        class="w-5 h-5"
+                        class="w-4 h-4 text-lime-500"
                     />
                     General_FAQ
                 </h3>
@@ -138,17 +141,19 @@ const faqs = [
                 <div class="space-y-2">
                     {
                         faqs.map((faq) => (
-                            <details class="group border-b border-gray-100 dark:border-gray-800 pb-4">
-                                <summary class="list-none cursor-pointer flex justify-between items-center text-sm font-medium text-gray-900 dark:text-gray-200 hover:text-lime-500 transition-colors py-2">
+                            <details class="group border-b border-gray-100 dark:border-gray-900/50 last:border-0 pb-4">
+                                <summary class="list-none cursor-pointer flex justify-between items-center text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-lime-500 transition-colors py-3">
                                     <span>{faq.q}</span>
                                     <Icon
                                         name="mdi:plus"
-                                        class="w-4 h-4 text-gray-500 group-open:rotate-45 transition-transform"
+                                        class="w-4 h-4 text-gray-400 group-open:rotate-45 transition-transform"
                                     />
                                 </summary>
-                                <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed pl-2 border-l-2 border-lime-500/50 mt-2">
-                                    {faq.a}
-                                </p>
+                                <div class="pt-2 pb-4 px-4">
+                                    <p class="text-xs text-gray-500 dark:text-gray-500 leading-relaxed border-l-2 border-lime-500/20 pl-4 italic">
+                                        {faq.a}
+                                    </p>
+                                </div>
                             </details>
                         ))
                     }

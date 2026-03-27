@@ -6,9 +6,11 @@ const gear = [
         items: [
             { model: "HP EliteBook 830 G3", detail: "Main workstation" },
             { model: "Dell IN1910N", detail: "Secondary display" },
+            { model: "Jedel GM1320", detail: "Mouse" },
+            { model: "Abko AN05", detail: "Keyboard" },
             {
                 model: "Samsung Galaxy F05 (RisingOS)",
-                detail: "Daily driver Smartphone",
+                detail: "Daily driver smartphone",
             },
         ],
     },
@@ -91,18 +93,9 @@ const gear = [
     class="py-24 border-t border-gray-100 dark:border-gray-900 bg-white dark:bg-gray-950"
 >
     <div class="max-w-5xl mx-auto px-6">
-        <header class="mb-20">
-            <h2
-                class="text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight"
-            >
-                /uses
-            </h2>
-            <p
-                class="text-gray-500 dark:text-gray-400 font-mono text-xs uppercase tracking-[0.2em] max-w-xl"
-            >
-                Hardware, Software, and the Tech Stack behind my daily workflow.
-            </p>
-        </header>
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-16">
+            Uses
+        </h2>
 
         <div class="space-y-16">
             {
@@ -122,12 +115,12 @@ const gear = [
                                 {group.items.map((item) => (
                                     <li class="group">
                                         <div class="flex flex-col gap-1.5">
-                                            <span class="text-lime-600 dark:text-lime-400 font-bold text-sm tracking-tight group-hover:text-lime-500 transition-colors">
+                                            <span class="text-gray-900 dark:text-white font-medium text-sm">
                                                 {item.model}
                                             </span>
                                             {item.detail && (
-                                                <span class="text-[11px] text-gray-400 dark:text-gray-500 font-mono italic leading-tight">
-                                                    // {item.detail}
+                                                <span class="text-xs text-gray-400 dark:text-gray-500 leading-tight">
+                                                    {item.detail}
                                                 </span>
                                             )}
                                         </div>
@@ -140,24 +133,13 @@ const gear = [
             }
         </div>
 
-        <footer
-            class="mt-32 pt-10 border-t border-gray-100 dark:border-gray-900 flex justify-between items-center"
-        >
-            <p
-                class="text-[10px] text-gray-400 dark:text-gray-600 font-mono uppercase tracking-widest"
-            >
-                Last updated: {
-                    new Date().toLocaleDateString("en-US", {
-                        month: "long",
-                        year: "numeric",
-                    })
-                }
-            </p>
-            <div class="flex gap-2">
-                <div class="w-2 h-2 rounded-full bg-lime-500/20"></div>
-                <div class="w-2 h-2 rounded-full bg-lime-500/40"></div>
-                <div class="w-2 h-2 rounded-full bg-lime-500/60"></div>
-            </div>
-        </footer>
+        <p class="mt-16 text-xs text-gray-400">
+            Last updated {
+                new Date().toLocaleDateString("en-US", {
+                    month: "long",
+                    year: "numeric",
+                })
+            }
+        </p>
     </div>
 </section>

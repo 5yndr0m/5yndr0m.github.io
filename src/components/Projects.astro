@@ -3,37 +3,30 @@ import { Icon } from "astro-icon/components";
 
 const projects = [
     {
-        name: "Disaster Watch",
-        description:
-            "A community-driven MERN-stack mobile and web application for real-time disaster reporting and administration. Led an 8-person team through the full SDLC.",
-        tech: ["React Native", "Express", "MongoDB"],
-        link: "https://github.com/5yndr0m/disaster-watch",
-    },
-    {
         name: "Home Lab Automation",
         description:
             "Secure, self-hosted infrastructure on Arch Linux using Podman pods and Cloudflare Tunnels to automate system-level execution via SSH and n8n.",
         tech: ["Arch Linux", "Podman", "n8n", "Cloudflare"],
-        link: "#",
+        link: "",
     },
     {
         name: "NetSniff",
         description:
             "A low-level network monitoring tool built in Python that captures and analyzes live data packets as they travel through a network interface.",
-        tech: [
-            "Python",
-            "Network Programming",
-            "Packet Analysis",
-            "Network Security",
-            "Network Monitoring",
-        ],
+        tech: ["Python", "Network Programming", "Packet Analysis"],
         link: "https://github.com/5yndr0m/netsniff",
     },
+];
+
+const other = [
     {
-        name: "Academy-admin-Dashboard",
-        description:
-            "A high-performance administrative dashboard for educational institutes. Built with Next.js 14, Tailwind CSS, and shadcn/ui. Features real-time classroom tracking, teacher scheduling, and student attendance management.",
-        tech: ["Next.js", "Shadcn/ui", "TypeScript", "Web Development"],
+        name: "Disaster Watch",
+        detail: "Led an 8-person team through the full SDLC to build a community-driven disaster reporting platform.",
+        link: "https://github.com/5yndr0m/disaster-watch",
+    },
+    {
+        name: "Academy Admin Dashboard",
+        detail: "Administrative dashboard for educational institutes with classroom tracking and attendance management.",
         link: "https://github.com/5yndr0m/academy-admin",
     },
 ];
@@ -44,47 +37,77 @@ const projects = [
     class="py-24 border-t border-gray-100 dark:border-gray-900 bg-white dark:bg-gray-950"
 >
     <div class="max-w-5xl mx-auto px-6">
-        <h2
-            class="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3 mb-16"
-        >
-            <span class="w-2 h-8 bg-lime-500 rounded-full"></span>
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-16">
             Projects
         </h2>
 
-        <div class="grid gap-8">
+        <div class="grid gap-4">
             {
                 projects.map((project) => (
-                    <div class="group relative border border-gray-200 dark:border-gray-800 rounded-2xl p-8 bg-gray-50/30 dark:bg-gray-900/30 hover:border-lime-500/30 transition-all duration-300">
+                    <div class="border border-gray-200 dark:border-gray-800 rounded-lg p-6 hover:border-gray-300 dark:hover:border-gray-700 transition-colors">
                         <div class="flex justify-between items-start gap-4">
-                            <div class="space-y-4">
-                                <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-lime-500 transition-colors">
+                            <div class="space-y-3">
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">
                                     {project.name}
                                 </h3>
-                                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-2xl">
+                                <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-2xl">
                                     {project.description}
                                 </p>
-                                <div class="flex flex-wrap gap-2 pt-2">
+                                <div class="flex flex-wrap gap-2 pt-1">
                                     {project.tech.map((t) => (
-                                        <span class="text-[10px] font-mono font-medium px-2.5 py-1 rounded-md bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700">
+                                        <span class="text-[11px] px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-900 text-gray-500 dark:text-gray-400">
                                             {t}
                                         </span>
                                     ))}
                                 </div>
                             </div>
 
-                            <a
-                                href={project.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="shrink-0 p-3 rounded-xl bg-white dark:bg-gray-800 text-gray-400 hover:text-lime-500 hover:scale-110 border border-transparent hover:border-lime-500/20 shadow-sm transition-all"
-                                aria-label={`View ${project.name} source code`}
-                            >
-                                <Icon name="mdi:github" class="w-6 h-6" />
-                            </a>
+                            {project.link && (
+                                <a
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="shrink-0 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
+                                    aria-label={`View ${project.name} on GitHub`}
+                                >
+                                    <Icon name="mdi:github" class="w-5 h-5" />
+                                </a>
+                            )}
                         </div>
                     </div>
                 ))
             }
+        </div>
+
+        <div class="mt-16 pt-10 border-t border-gray-100 dark:border-gray-800">
+            <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-6">
+                Other Work
+            </h3>
+            <ul class="space-y-4">
+                {
+                    other.map((item) => (
+                        <li class="flex items-start justify-between gap-4">
+                            <div>
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                    {item.name}
+                                </span>
+                                <span class="text-sm text-gray-400 dark:text-gray-500">
+                                    {" "}— {item.detail}
+                                </span>
+                            </div>
+                            <a
+                                href={item.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="shrink-0 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
+                                aria-label={`View ${item.name} on GitHub`}
+                            >
+                                <Icon name="mdi:github" class="w-4 h-4" />
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
         </div>
     </div>
 </section>

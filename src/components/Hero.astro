@@ -8,38 +8,34 @@ import pfpImage from "../assets/pfp.jpeg";
     class="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950 px-6 pt-16"
 >
     <div class="flex flex-col items-center text-center max-w-3xl">
-        <div class="relative mb-10 group">
-            <div
-                class="absolute inset-0 bg-lime-500 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity"
-            >
-            </div>
+        <div class="mb-10">
             <Image
                 src={pfpImage}
                 alt="Senal Dilanjana"
                 width={160}
                 height={160}
                 loading="eager"
-                class="relative w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-gray-100 dark:border-gray-900 shadow-2xl transition-transform duration-500 group-hover:scale-105"
+                class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border border-gray-200 dark:border-gray-800"
             />
         </div>
 
         <h1
             class="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight"
         >
-            <span class="text-lime-600 dark:text-lime-400">Linux-Native</span> Technologist
+            Linux-Native Technologist
             & <br />
             Cybersecurity Enthusiast.
         </h1>
 
         <p
-            class="mt-6 text-lg text-gray-600 dark:text-gray-400 max-w-xl leading-relaxed"
+            class="mt-6 text-lg text-gray-500 dark:text-gray-400 max-w-xl leading-relaxed"
         >
-            Hi! I'm <span class="text-gray-900 dark:text-white font-medium"
+            Hi, I'm <span class="text-gray-900 dark:text-white font-medium"
                 >Senal Dilanjana</span
             >. I secure digital infrastructures and analyze network threats
             using SIEM tools like
             <span
-                class="font-mono text-sm bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded"
+                class="text-gray-900 dark:text-white font-medium"
                 >Splunk</span
             >.
         </p>
@@ -50,25 +46,26 @@ import pfpImage from "../assets/pfp.jpeg";
                     {
                         name: "mdi:github",
                         url: "https://github.com/5yndrom",
-                        color: "hover:text-black dark:hover:text-white",
+                        label: "GitHub",
                     },
                     {
                         name: "mdi:linkedin",
                         url: "https://www.linkedin.com/in/senalkad",
-                        color: "hover:text-blue-600",
+                        label: "LinkedIn",
                     },
                     {
                         name: "mdi:email",
                         url: "mailto:contact@dilanjana.me",
-                        color: "hover:text-lime-500",
+                        label: "Email",
                     },
                 ].map((social) => (
                     <a
                         href={social.url}
-                        class={`text-gray-400 ${social.color} transition-all duration-300 hover:-translate-y-1`}
+                        aria-label={social.label}
+                        class="text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
                         target="_blank"
                     >
-                        <Icon name={social.name} class="w-8 h-8" />
+                        <Icon name={social.name} class="w-6 h-6" />
                     </a>
                 ))
             }

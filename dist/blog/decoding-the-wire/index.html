@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><meta name="generator" content="Astro v5.18.1"><title>Dilanjana.me</title><link rel="stylesheet" href="/_astro/_slug_.BjcJdr2o.css"></head> <body class="bg-white dark:bg-gray-950 text-black dark:text-white" data-astro-cid-sckkx6r4>  <main class="pt-32 pb-20"> <article class="max-w-3xl mx-auto px-6"> <header class="mb-12"> <h1 class="text-4xl font-bold mb-4">Decoding the Wire: How I Built a Raw Socket Sniffer in Python</h1> <p class="text-gray-500 font-mono text-sm"> Wed Feb 04 2026 | Linux </p> </header> <img src="/_astro/decoding_the_wire.CJcx2mtq_ZPFcbK.webp" alt="Decoding the Wire: How I Built a Raw Socket Sniffer in Python" loading="lazy" decoding="async" fetchpriority="auto" width="1200" height="600" class="rounded-3xl mb-12 border border-gray-200 dark:border-gray-800"> <div class="prose prose-lime dark:prose-invert max-w-none"> <p>In an era of encrypted traffic and high-level APIs, the actual mechanics of how data moves across a wire can feel like “magic.” To demystify this, I built <strong>NetSniff</strong>—a low-level network monitor that bypasses the standard OS abstractions to see the raw binary heartbeat of a network.</p>
+<p><img alt="OSI Model Layers" loading="lazy" decoding="async" fetchpriority="auto" width="570" height="805" src="/_astro/OSI_Model_Layers.excalidraw.CdO-LvtQ_Z1l5wLh.webp" ></p>
+<h2 id="what-exactly-is-a-sniffer">What exactly is a “Sniffer”?</h2>
+<p>A network sniffer (or packet analyzer) is a tool that intercepts and logs traffic passing over a digital network. While most applications only see the “payload” (the message you sent), a sniffer sees the <strong>envelope, the stamps, and the postmarks.</strong> By putting the network interface into a mode where it captures every frame—not just the ones addressed to your computer—we can visualize the conversation between every device on the local link.</p>
+<hr>
+<h2 id="the-anatomy-of-the-network-onion">The Anatomy of the Network “Onion”</h2>
+<p>To build NetSniff, I had to treat every packet like a Russian Nesting Doll. This is known as <strong>Encapsulation</strong>. My code performs <strong>De-encapsulation</strong> in reverse order:</p>
+<h3 id="1-the-ethernet-frame-the-outer-shell">1. The Ethernet Frame (The Outer Shell)</h3>
+<p>Every piece of data on a local area network (LAN) is wrapped in an Ethernet frame. It’s the “hardware” layer.</p>
+<ul>
+<li><strong>MAC Addresses:</strong> These are the permanent physical IDs of your network card.</li>
+<li><strong>The EtherType:</strong> This is a crucial 2-byte field. It tells my sniffer: “Hey, the next layer inside me is an IPv4 packet” (Value <code>8</code>) or “This is an ARP request” (Value <code>2054</code>).</li>
+</ul>
+<h3 id="2-the-ip-packet-the-routing-layer">2. The IP Packet (The Routing Layer)</h3>
+<p>Once we peel back the Ethernet header, we find the <strong>Internet Protocol (IP)</strong> packet. This is the “envelope” used to move data across the wider internet.</p>
+<ul>
+<li><strong>IP Addresses:</strong> The logical Source and Destination (e.g., <code>192.168.1.1</code>).</li>
+<li><strong>TTL (Time to Live):</strong> A counter that prevents packets from looping forever.</li>
+<li><strong>Protocol Field:</strong> Just like the EtherType, this tells us what’s inside the IP packet—TCP, UDP, or ICMP.</li>
+</ul>
+<h3 id="3-the-transport-protocols-the-engines">3. The Transport Protocols (The Engines)</h3>
+<p>This is where the actual “work” happens. NetSniff is designed to handle the “Big Three”:</p>
+<ul>
+<li><strong>TCP (Transmission Control Protocol):</strong> The “Reliable” one. It uses a 3-way handshake. My code extracts <strong>Flags</strong> (URG, ACK, PSH, RST, SYN, FIN) to show if a connection is starting, ending, or resetting.</li>
+<li><strong>UDP (User Datagram Protocol):</strong> The “Fast” one. No handshakes, just raw data. Great for streaming or DNS.</li>
+<li><strong>ICMP (Internet Control Message Protocol):</strong> The “Diagnostic” one. This is what <code>ping</code> uses to check if a server is alive.</li>
+</ul>
+<hr>
+<h2 id="flow-code-architecture">Flow: Code Architecture</h2>
+<p><img alt="NetSniff Flow" loading="lazy" decoding="async" fetchpriority="auto" width="1180" height="1300" src="/_astro/NetSniff_Flow.excalidraw.CP8cXTMR_1ymVt5.webp" ></p>
+<hr>
+<h2 id="technical-hurdles-bitwise-operations">Technical Hurdles: Bitwise Operations</h2>
+<p>One of the most challenging parts of this project was dealing with <strong>Network Byte Order (Big Endian)</strong>. Computers store data differently than networks transmit it.</p>
+<p>I used Python’s <code>struct</code> module to map binary data to variables. For example, the IP version and Header Length are crammed into a single byte. To separate them, I had to use <strong>Bitwise Shifting</strong>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>version_header_length = data[0]</span></span>
+<span class="line"><span>version = version_header_length >> 4  # Shift right 4 bits to get the version</span></span>
+<span class="line"><span>header_length = (version_header_length &#x26; 15) * 4  # Use a mask to get the length</span></span></code></pre>
+<hr>
+<h2 id="intelligent-data-handling-the-buffer-system">Intelligent Data Handling: The Buffer System</h2>
+<p>Writing to a CSV file is a “slow” operation for a computer. If your network is busy, the sniffer might miss a packet while it’s busy writing the previous one to the disk.</p>
+<p>To solve this, I implemented a <strong>Buffer Strategy</strong>:</p>
+<ol>
+<li><strong>List Storage:</strong> Packets are held in a memory-resident list.</li>
+<li><strong>Batch Processing:</strong> Only when the list hits 50 packets does the <code>pandas</code> library trigger a write to the CSV.</li>
+<li><strong>Schema Consistency:</strong> Since an ARP packet has different fields than a TCP packet, I used a <code>base_fields</code> dictionary to ensure the CSV columns stay perfectly aligned, even when data is missing.</li>
+</ol>
+<hr>
+<h2 id="quick-start-guide">Quick Start Guide</h2>
+<p>Want to try NetSniff yourself? Follow these steps:</p>
+<ol>
+<li><strong>Clone:</strong> clone the repository from <strong><a href="https://github.com/5yndr0m/netsniff">GitHub</a></strong></li>
+<li><strong>Environment:</strong> Create a virtual environment to keep your system clean.</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">python</span><span style="color:#79B8FF"> -m</span><span style="color:#9ECBFF"> venv</span><span style="color:#9ECBFF"> venv</span></span>
+<span class="line"><span style="color:#79B8FF">source</span><span style="color:#9ECBFF"> venv/bin/python</span><span style="color:#6A737D">  # On Linux</span></span></code></pre>
+<ol start="2">
+<li><strong>Script:</strong> Copy the <code>netsniff.py</code> into the virtual environment.</li>
+<li><strong>Dependencies:</strong> You’ll need <code>pandas</code> for the data export.</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">pip</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> pandas</span></span></code></pre>
+<ol start="4">
+<li><strong>Execution:</strong> Because we are touching Raw Sockets, you <strong>must</strong> use <code>sudo</code>.</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> ./venv/bin/python</span><span style="color:#9ECBFF"> netsniff.py</span></span></code></pre>
+<ol start="5">
+<li><strong>Logs:</strong> To get terminal logs you can add <code>--verbose</code> flag.</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> ./venv/bin/python</span><span style="color:#9ECBFF"> netsniff.py</span><span style="color:#79B8FF"> --verbose</span></span></code></pre>
+<ol start="7">
+<li><strong>Output:</strong> Sniffed packets will be saved to the <code>capture_data.csv</code> file in the same directory</li>
+</ol>
+<hr>
+<h2 id="troubleshooting--faq">Troubleshooting &#x26; FAQ</h2>
+<ul>
+<li>
+<p><strong>“Why do I get Permission Denied?”</strong></p>
+<p>Raw sockets allow you to see traffic from other users and the OS. For security reasons, Linux requires <code>sudo</code> or <code>CAP_NET_RAW</code> privileges to run this.</p>
+</li>
+<li>
+<p><strong>“I’m on Windows and it’s crashing!”</strong></p>
+<p>This specific implementation uses <code>AF_PACKET</code>, which is a Linux-specific socket type. For Windows support, one would typically use <code>WinPcap</code> or <code>Npcap</code> drivers.</p>
+</li>
+<li>
+<p><strong>“Why is the CSV empty?”</strong></p>
+<p>The sniffer waits for 50 packets before saving. If your network is quiet, try browsing a few websites to generate traffic, or hit <code>Ctrl+C</code> to force a final save of the remaining buffer.</p>
+</li>
+</ul>
+<hr>
+<p><strong>This project was a deep dive into the “low level” of the web. What should I sniff next? Maybe an HTTP traffic decrypter?</strong></p> </div> </article> </main>  </body></html>
